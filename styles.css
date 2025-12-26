@@ -589,7 +589,7 @@ blockquote:hover {
   .card,
   .content-block {
     padding: 1.5rem;
-    border-radius: 16px;
+    border-radius: 12px;
   }
   
   h1 {
@@ -598,13 +598,18 @@ blockquote:hover {
   
   .new-romance-section {
     padding: 2rem;
-    border-radius: 16px;
+    border-radius: 12px;
   }
   
   blockquote,
   .callout {
     margin: 1rem 0;
     padding: 1rem 1.5rem;
+  }
+  
+  /* Force 1 column on mobile for homepage grids */
+  [style*="grid-template-columns: repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
   }
 }
 
