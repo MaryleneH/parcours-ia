@@ -511,10 +511,11 @@ table tbody tr:hover {
    ============================================================================ */
 
 /* New Romance specific styles - Softer romantic feel with enhanced visual effects */
-.new-romance-section {
+/* Use higher specificity to override .content-block background without !important */
+.content-block.new-romance-section {
   /* Override background for New Romance card with romantic gradient */
-  background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--hermes-beige) 50%, var(--pink-soft) 100%) !important;
-  border: 1px solid rgba(212, 165, 165, 0.4) !important;
+  background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--hermes-beige) 50%, var(--pink-soft) 100%);
+  border: 1px solid rgba(212, 165, 165, 0.4);
 }
 
 @keyframes float {
@@ -559,8 +560,7 @@ table tbody tr:hover {
   transform: scale(1.1);
 }
 
-/* Ensure headings in New Romance maintain visibility */
-/* Ensure headings in New Romance maintain visibility */
+/* Ensure headings in New Romance maintain visibility above decorative elements */
 .new-romance-section h1,
 .new-romance-section h2,
 .new-romance-section h3,
