@@ -1,0 +1,228 @@
+---
+title: "Niveau Débutant"
+subtitle: "Fondamentaux de l'Intelligence Artificielle"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 🌱 Bienvenue au Niveau Débutant
+
+Ce parcours vous accompagne dans vos premiers pas en Intelligence Artificielle. Nous commencerons par les concepts fondamentaux avant de progresser vers des applications pratiques.
+
+## 📖 Module 1 : Introduction à l'IA
+
+### Qu'est-ce que l'Intelligence Artificielle ?
+
+L'Intelligence Artificielle (IA) est un domaine de l'informatique qui vise à créer des systèmes capables d'effectuer des tâches nécessitant normalement l'intelligence humaine.
+
+::: {.callout-note}
+#### Définitions Clés
+- **Machine Learning** : Apprentissage automatique à partir de données
+- **Deep Learning** : Sous-ensemble du ML utilisant des réseaux de neurones profonds
+- **IA Générative** : Systèmes capables de créer du nouveau contenu
+:::
+
+### Domaines d'Application
+
+- **Vision par ordinateur** : Reconnaissance d'images, détection d'objets
+- **Traitement du langage naturel** : Analyse de texte, traduction
+- **Recommandation** : Systèmes de suggestions personnalisées
+- **Prédiction** : Forecasting, classification, régression
+
+## 💻 Module 2 : Environnement de Travail
+
+### Langages de Programmation
+
+::: {.card}
+#### Python
+Le langage le plus utilisé en data science et IA
+
+- **Bibliothèques essentielles** : NumPy, Pandas, Scikit-learn
+- **Visualisation** : Matplotlib, Seaborn, Plotly
+- **Deep Learning** : TensorFlow, PyTorch
+:::
+
+::: {.card}
+#### R
+Privilégié pour les analyses statistiques
+
+- **Tidyverse** : Manipulation de données moderne
+- **ggplot2** : Visualisations élégantes
+- **caret, tidymodels** : Machine learning
+:::
+
+### Outils de Développement
+
+- **Jupyter Notebooks** : Environnement interactif
+- **RStudio** : IDE pour R
+- **VS Code** : Éditeur polyvalent
+- **Google Colab** : Notebooks gratuits dans le cloud
+
+## 📊 Module 3 : Manipulation de Données
+
+### Chargement et Exploration
+
+```python
+# Exemple avec Python/Pandas
+import pandas as pd
+import numpy as np
+
+# Charger des données
+df = pd.read_csv('data.csv')
+
+# Exploration initiale
+print(df.head())
+print(df.info())
+print(df.describe())
+```
+
+### Nettoyage des Données
+
+Les étapes essentielles :
+
+1. **Gestion des valeurs manquantes** : Suppression ou imputation
+2. **Détection des outliers** : Identification et traitement
+3. **Normalisation** : Mise à l'échelle des variables
+4. **Encodage** : Conversion des variables catégorielles
+
+## 🤖 Module 4 : Premiers Algorithmes
+
+### Régression Linéaire
+
+Le point de départ du machine learning supervisé.
+
+**Utilisation** : Prédire une valeur continue
+
+```python
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+
+# Préparer les données
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Créer et entraîner le modèle
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Prédire
+predictions = model.predict(X_test)
+```
+
+### Classification : K-Nearest Neighbors (KNN)
+
+Algorithme simple mais efficace pour la classification.
+
+**Principe** : Classer en fonction des K voisins les plus proches
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# Créer le modèle
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+
+# Évaluer
+accuracy = knn.score(X_test, y_test)
+print(f"Précision : {accuracy:.2%}")
+```
+
+### Clustering : K-Means
+
+Apprentissage non supervisé pour regrouper des données similaires.
+
+```python
+from sklearn.cluster import KMeans
+
+# Créer et entraîner
+kmeans = KMeans(n_clusters=3, random_state=42)
+clusters = kmeans.fit_predict(X)
+```
+
+## 📈 Module 5 : Évaluation de Modèles
+
+### Métriques pour la Régression
+
+- **MSE (Mean Squared Error)** : Erreur quadratique moyenne
+- **RMSE (Root Mean Squared Error)** : Racine de l'erreur quadratique
+- **MAE (Mean Absolute Error)** : Erreur absolue moyenne
+- **R² Score** : Coefficient de détermination
+
+### Métriques pour la Classification
+
+- **Accuracy** : Taux de bonnes prédictions
+- **Precision** : Précision des prédictions positives
+- **Recall** : Taux de détection des positifs
+- **F1-Score** : Moyenne harmonique de précision et recall
+
+### Validation Croisée
+
+```python
+from sklearn.model_selection import cross_val_score
+
+# Validation croisée 5-fold
+scores = cross_val_score(model, X, y, cv=5)
+print(f"Score moyen : {scores.mean():.2f} (+/- {scores.std():.2f})")
+```
+
+## 🎯 Projets Pratiques
+
+### Projet 1 : Prédiction de Prix
+
+Prédire le prix de maisons en fonction de leurs caractéristiques.
+
+**Compétences** : Régression linéaire, feature engineering, évaluation
+
+### Projet 2 : Classification d'Images
+
+Classifier des images simples (ex: chiffres manuscrits MNIST).
+
+**Compétences** : KNN ou logistic regression, normalisation, métriques
+
+### Projet 3 : Segmentation de Clients
+
+Regrouper des clients selon leurs comportements d'achat.
+
+**Compétences** : K-Means, visualisation, interprétation
+
+## 📚 Ressources pour Approfondir
+
+### Livres Recommandés
+
+- "Python Machine Learning" - Sebastian Raschka
+- "Hands-On Machine Learning" - Aurélien Géron
+- "R for Data Science" - Hadley Wickham
+
+### Cours en Ligne
+
+- Coursera : Machine Learning by Andrew Ng
+- Fast.ai : Practical Deep Learning
+- DataCamp : Introduction to Python/R
+
+### Datasets pour Pratiquer
+
+- [Kaggle Datasets](https://www.kaggle.com/datasets)
+- [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/)
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+
+## ✅ Check-list de Compétences
+
+Avant de passer au niveau intermédiaire, assurez-vous de maîtriser :
+
+- [ ] Manipulation de données avec Pandas ou dplyr
+- [ ] Création de visualisations avec Matplotlib ou ggplot2
+- [ ] Implémentation de régression linéaire
+- [ ] Application de KNN pour la classification
+- [ ] Utilisation de K-Means pour le clustering
+- [ ] Calcul et interprétation des métriques d'évaluation
+- [ ] Réalisation d'une validation croisée
+- [ ] Compréhension du surapprentissage (overfitting)
+
+---
+
+::: {.callout-note}
+## 🎓 Prochaine Étape
+Une fois ces compétences maîtrisées, vous êtes prêt pour le [Niveau Intermédiaire](intermediaire.qmd) !
+:::

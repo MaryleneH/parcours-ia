@@ -1,0 +1,83 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Parcours IA"
+  site-url: "https://maryleneh.github.io/parcours-ia"
+  description: "Formations et ressources IA pour professionnels data (statistiques & économie)"
+  
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Accueil"
+        href: index.qmd
+      - text: "À propos"
+        href: about.qmd
+      - text: "Parcours IA"
+        menu:
+          - text: "Hub IA"
+            href: ia/index.qmd
+          - text: "Niveau Débutant"
+            href: ia/debutant.qmd
+          - text: "Niveau Intermédiaire"
+            href: ia/intermediaire.qmd
+          - text: "Niveau Expérimenté"
+            href: ia/experimente.qmd
+      - text: "PM/Scrum"
+        menu:
+          - text: "Hub PM/Scrum"
+            href: pm-scrum/index.qmd
+          - text: "Cadrage"
+            href: pm-scrum/cadrage.qmd
+          - text: "Gouvernance"
+            href: pm-scrum/gouvernance.qmd
+          - text: "Delivery"
+            href: pm-scrum/delivery.qmd
+      - text: "Exemples Code"
+        menu:
+          - text: "Exemple Python"
+            href: examples/python-example.qmd
+          - text: "Exemple R"
+            href: examples/r-example.qmd
+    right:
+      - text: "New Romance"
+        href: new-romance/index.qmd
+
+  sidebar:
+    - id: new-romance
+      title: "New Romance"
+      style: "floating"
+      collapse-level: 1
+      contents:
+        - text: "Accueil New Romance"
+          href: new-romance/index.qmd
+        - text: "Explorer"
+          href: new-romance/explore.qmd
+        - text: "Créer"
+          href: new-romance/create.qmd
+
+  page-footer:
+    left: "© 2025 Parcours IA"
+    right: 
+      - icon: github
+        href: https://github.com/MaryleneH/parcours-ia
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - styles.css
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-fold: false
+    smooth-scroll: true
+    lang: fr
+    date-format: "DD/MM/YYYY"
+
+execute:
+  freeze: auto
+  cache: true
+  enabled: true

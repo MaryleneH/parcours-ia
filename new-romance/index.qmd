@@ -1,0 +1,239 @@
+---
+title: "New Romance"
+subtitle: "L'IA dans des Contextes Inattendus"
+date: last-modified
+format:
+  html:
+    toc: true
+---
+
+::: {.new-romance-section}
+
+## 💕 Bienvenue dans New Romance
+
+*New Romance* est un espace d'exploration créative où l'Intelligence Artificielle rencontre l'art, la littérature et l'imagination. Ici, nous explorons les applications non conventionnelles de l'IA.
+
+### 🎨 Notre Vision
+
+> "L'Intelligence Artificielle n'est pas seulement une technologie, c'est un nouveau medium d'expression créative."
+
+Cette section célèbre la fusion entre :
+
+- **Technologie** et **Art**
+- **Données** et **Émotions**
+- **Algorithmes** et **Créativité**
+- **Science** et **Humanités**
+
+:::
+
+## 🌟 Thématiques Explorées
+
+### 📚 IA et Littérature
+
+::: {.card}
+**Génération de Textes Créatifs**
+
+- Poésie algorithmique
+- Romans collaboratifs homme-machine
+- Analyse de style littéraire
+- Traduction créative
+:::
+
+### 🎨 IA et Arts Visuels
+
+::: {.card}
+**Création Visuelle Assistée**
+
+- Génération d'images (Stable Diffusion, DALL-E)
+- Style transfer artistique
+- Art génératif
+- Restauration d'œuvres d'art
+:::
+
+### 🎵 IA et Musique
+
+::: {.card}
+**Composition Algorithmique**
+
+- Génération de mélodies
+- Harmonisation automatique
+- Remix et mashups intelligents
+- Analyse de tendances musicales
+:::
+
+### 🎭 IA et Performance
+
+::: {.card}
+**Expériences Interactives**
+
+- Installations immersives
+- Théâtre augmenté
+- Performances génératives
+- Réalité mixte
+:::
+
+## 🚀 Projets Inspirants
+
+### Projet 1 : Poésie Algorithmique
+
+**Concept :** Utiliser des modèles de langage pour créer de la poésie à partir de sentiments et d'émotions.
+
+**Technologies :**
+- GPT-3/4 pour la génération
+- Sentiment analysis pour l'input émotionnel
+- Fine-tuning sur corpus poétique français
+
+**Exemple d'output :**
+
+```
+Les données dansent dans la nuit étoilée,
+Algorithmes tissent des rêves enchantés,
+Entre zéros et uns, l'amour s'est glissé,
+Une romance nouvelle, par bits assemblée.
+```
+
+### Projet 2 : Portraits d'Émotions
+
+**Concept :** Générer des portraits visuels basés sur l'analyse d'émotions dans des textes.
+
+**Workflow :**
+1. Analyser le texte pour extraire les émotions
+2. Mapper les émotions à des palettes de couleurs
+3. Générer une image avec Stable Diffusion
+4. Post-traitement artistique
+
+### Projet 3 : Symphonie de Données
+
+**Concept :** Transformer des datasets en compositions musicales.
+
+**Approche :**
+- Variables numériques → notes musicales
+- Tendances temporelles → rythmes
+- Corrélations → harmonies
+- Anomalies → accents
+
+## 💡 Expérimentations
+
+### Atelier 1 : Dialogues Impossibles
+
+Créer des conversations entre personnages historiques, littéraires ou fictifs en utilisant l'IA.
+
+**Exemple :**
+> *Marie Curie discute de science avec un personnage de science-fiction*
+
+### Atelier 2 : Rêves Algorithmiques
+
+Visualiser des "rêves" de réseaux de neurones pendant l'entraînement.
+
+**Technique :** Deep Dream, activation maximization
+
+### Atelier 3 : Chroniques du Futur
+
+Générer des récits spéculatifs sur l'avenir de l'humanité et de l'IA.
+
+**Format :** Short stories, micro-fiction
+
+## 🎓 Ressources Créatives
+
+### Outils pour Créateurs
+
+**Génération de Texte :**
+- ChatGPT / Claude : Assistance créative
+- Sudowrite : Écriture créative
+- NovelAI : Fiction narrative
+
+**Génération d'Images :**
+- Midjourney : Art conceptuel
+- Stable Diffusion : Open-source
+- DALL-E 3 : Haute qualité
+
+**Musique :**
+- AIVA : Composition orchestrale
+- Amper Music : Musique de fond
+- Jukebox : Génération audio complète
+
+**Vidéo :**
+- Runway ML : Édition vidéo IA
+- Synthesia : Avatars virtuels
+- Pika Labs : Génération vidéo
+
+### Communautés Créatives
+
+- **r/MediaSynthesis** : Reddit pour création IA
+- **AIArtists** : Communauté d'artistes IA
+- **Hugging Face Community** : Projets collaboratifs
+- **RunwayML Discord** : Expérimentations vidéo
+
+## 📖 Lectures Inspirantes
+
+### Livres
+
+- *"The Artist in the Machine"* - Arthur I. Miller
+- *"Co-Creative AI"* - Luba Elliott
+- *"AI and the Arts"* - Mick Grierson
+- *"Artificial Intimacy"* - Rob Brooks
+
+### Articles et Essais
+
+- "Can Algorithms Be Creative?" - The Atlantic
+- "AI-Generated Art and the Question of Authorship"
+- "The Aesthetics of Artificial Intelligence"
+
+## 🌈 Galerie d'Inspirations
+
+### Artistes Pionniers
+
+**Refik Anadol**
+- Installations de data art immersives
+- Visualisations de mémoires collectives
+
+**Anna Ridler**
+- Art génératif avec GANs
+- Tulipes algorithmiques
+
+**Memo Akten**
+- Deep learning comme medium artistique
+- Explorations conceptuelles
+
+**Mario Klingemann**
+- Art neuronal
+- X Degrees of Separation
+
+## 🎯 Participer à New Romance
+
+### Comment Contribuer
+
+1. **Partagez vos créations** : Expériences artistiques avec l'IA
+2. **Proposez des projets** : Idées de collaborations créatives
+3. **Documentez vos explorations** : Processus et découvertes
+4. **Inspirez la communauté** : Ressources et références
+
+### Éthique Créative
+
+Dans nos explorations, nous restons attentifs à :
+
+- **Attribution** : Créditer les sources et inspirations
+- **Droits d'auteur** : Respecter la propriété intellectuelle
+- **Transparence** : Indiquer l'usage de l'IA dans les œuvres
+- **Diversité** : Représenter des perspectives variées
+- **Réflexion** : Questionner l'impact de l'IA sur l'art
+
+## 🚀 Prochaines Explorations
+
+::: {.card}
+### [Explorer](explore.qmd)
+Découvrez des projets et expérimentations fascinants
+:::
+
+::: {.card}
+### [Créer](create.qmd)
+Guides pratiques pour créer vos propres œuvres IA
+:::
+
+---
+
+::: {.callout-note}
+## 💭 Réflexion
+
+*"New Romance réinvente la relation entre l'humain et la machine, transformant l'IA d'outil technique en partenaire créatif."*
+:::

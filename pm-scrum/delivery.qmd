@@ -1,0 +1,541 @@
+---
+title: "Delivery de Projet IA"
+subtitle: "Livrer de la valeur de manière itérative et continue"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 🚀 L'Art de Livrer en IA
+
+La delivery en IA nécessite une approche spécifique qui combine :
+
+- **Itérations rapides** pour valider les hypothèses
+- **Expérimentation structurée** pour tester différentes approches
+- **Feedback continu** pour ajuster la direction
+- **Déploiement progressif** pour minimiser les risques
+
+## 📅 Cycle de Delivery IA
+
+### Vue d'Ensemble
+
+```
+Discovery → POC → MVP → V1 → Amélioration Continue
+  (2-4w)   (2-4w) (6-8w) (variable)  (ongoing)
+```
+
+### Phase 1 : Discovery (2-4 semaines)
+
+**Objectif :** Explorer et valider la faisabilité
+
+**Activités :**
+
+- Analyse exploratoire des données (EDA)
+- Recherche de littérature
+- Benchmark d'algorithmes existants
+- Définition de la baseline
+- Identification des quick wins
+
+**Livrables :**
+
+- Rapport d'EDA
+- Baseline metrics
+- Faisabilité technique validée
+- Recommandations d'approches
+
+::: {.callout-note}
+**Success Criteria :**
+- Données accessibles et de qualité suffisante
+- Au moins une approche prometteuse identifiée
+- Baseline définie comme point de comparaison
+:::
+
+### Phase 2 : Proof of Concept (2-4 semaines)
+
+**Objectif :** Démontrer la viabilité technique
+
+**Activités :**
+
+- Développement d'un prototype minimal
+- Test de 2-3 algorithmes différents
+- Validation sur données de test
+- Estimation de l'effort pour industrialisation
+
+**Livrables :**
+
+- Prototype fonctionnel
+- Comparaison d'algorithmes
+- Métriques de performance
+- Plan de déploiement
+
+::: {.callout-note}
+**Success Criteria :**
+- Performance supérieure à la baseline
+- Validation technique confirmée
+- Estimation coûts/bénéfices réaliste
+:::
+
+### Phase 3 : MVP (6-8 semaines)
+
+**Objectif :** Livrer une première version utilisable
+
+**Sprint 1-2 : Développement Core**
+
+- Feature engineering robuste
+- Entraînement modèle optimisé
+- Validation rigoureuse
+- Tests unitaires
+
+**Sprint 3-4 : Industrialisation**
+
+- API REST pour inférences
+- Pipeline de données automatisé
+- Monitoring de base
+- Documentation
+
+**Sprint 5-6 : Intégration & Tests**
+
+- Intégration avec systèmes existants
+- Tests d'intégration
+- Tests de charge
+- Ajustements finaux
+
+**Livrables :**
+
+- Modèle en production
+- API documentée
+- Dashboard de monitoring
+- Guide utilisateur
+
+### Phase 4 : Amélioration Continue
+
+**Objectif :** Optimiser et maintenir la valeur
+
+**Activités récurrentes :**
+
+- Monitoring des performances
+- Détection de drift
+- Retraining périodique
+- Ajout de features
+- Optimisation continue
+
+## 🎯 Sprint Planning pour l'IA
+
+### Structure de Sprint Adaptée
+
+**Sprint de 2 semaines - Allocation typique :**
+
+- **40%** : Expérimentation et modélisation
+- **30%** : Engineering et infrastructure
+- **20%** : Tests et validation
+- **10%** : Documentation et revue
+
+### Planning Poker pour l'IA
+
+Adapter l'estimation avec des critères spécifiques :
+
+**Facteurs de Complexité :**
+
+- Disponibilité des données (1-5)
+- Complexité de l'algorithme (1-5)
+- Qualité du code existant (1-5)
+- Dépendances externes (1-5)
+
+**Échelle de Points :**
+
+- **1 point** : Tâche simple, 2-4h (ex: ajout d'une feature basique)
+- **2 points** : Tâche claire, 4-8h (ex: test d'un algorithme standard)
+- **3 points** : Complexité moyenne, 1 jour (ex: feature engineering)
+- **5 points** : Complexe, 2-3 jours (ex: nouveau modèle)
+- **8 points** : Très complexe, 3-5 jours (ex: architecture complète)
+- **13 points** : Trop gros, à découper
+
+### Backlog Structuré
+
+**Types de User Stories :**
+
+```markdown
+# Story Métier
+En tant que [utilisateur]
+Je veux [fonctionnalité]
+Afin de [bénéfice]
+
+Critères d'acceptation:
+- [ ] Critère 1
+- [ ] Critère 2
+
+# Story Technique
+En tant que data scientist
+Je veux [capacité technique]
+Afin de [améliorer le modèle/système]
+
+# Spike d'Exploration
+Investiguer [sujet]
+Time-box: [durée]
+Objectif: [apprentissage attendu]
+```
+
+## 🔬 Gestion des Expérimentations
+
+### Workflow d'Expérimentation
+
+```
+Hypothèse → Expérimentation → Évaluation → Décision
+    ↑                                         ↓
+    └────────────── Apprentissage ←───────────┘
+```
+
+### Tracking avec MLflow
+
+```python
+import mlflow
+import mlflow.sklearn
+
+# Configuration de l'expérimentation
+mlflow.set_experiment("churn_prediction")
+
+with mlflow.start_run(run_name="random_forest_v1"):
+    # Logger les paramètres
+    params = {
+        "n_estimators": 100,
+        "max_depth": 10,
+        "min_samples_split": 5
+    }
+    mlflow.log_params(params)
+    
+    # Entraîner le modèle
+    model = RandomForestClassifier(**params)
+    model.fit(X_train, y_train)
+    
+    # Logger les métriques
+    metrics = {
+        "accuracy": model.score(X_test, y_test),
+        "f1_score": f1_score(y_test, model.predict(X_test)),
+        "auc_roc": roc_auc_score(y_test, model.predict_proba(X_test)[:, 1])
+    }
+    mlflow.log_metrics(metrics)
+    
+    # Logger le modèle
+    mlflow.sklearn.log_model(model, "model")
+    
+    # Logger des artifacts
+    mlflow.log_artifact("feature_importance.png")
+```
+
+### Registre d'Expérimentations
+
+Maintenir un registre pour chaque expérimentation :
+
+| Run ID | Date | Algorithme | Params | Accuracy | F1 | Notes | Status |
+|--------|------|------------|--------|----------|----|----|--------|
+| exp-001 | 01/12 | RandomForest | n_est=100 | 0.82 | 0.79 | Baseline | Archivé |
+| exp-002 | 05/12 | XGBoost | lr=0.1 | 0.85 | 0.83 | Meilleur | Produit |
+
+## 🧪 Tests et Validation
+
+### Pyramide de Tests ML
+
+```
+        Tests A/B (Production)
+              ↑
+         Tests d'Intégration
+              ↑
+        Tests de Modèle
+              ↑
+         Tests Unitaires
+```
+
+### Tests Unitaires (Data & Code)
+
+```python
+import pytest
+import pandas as pd
+from src.preprocessing import clean_data
+
+def test_clean_data_removes_nulls():
+    # Arrange
+    df = pd.DataFrame({
+        'feature1': [1, 2, None, 4],
+        'feature2': [5, None, 7, 8]
+    })
+    
+    # Act
+    result = clean_data(df)
+    
+    # Assert
+    assert result.isnull().sum().sum() == 0
+    
+def test_clean_data_maintains_shape():
+    df = pd.DataFrame({'col1': [1, 2, 3]})
+    result = clean_data(df)
+    assert len(result.columns) >= len(df.columns)
+```
+
+### Tests de Modèle
+
+```python
+def test_model_performance_above_threshold():
+    """Le modèle doit avoir une accuracy > 0.80"""
+    accuracy = model.score(X_test, y_test)
+    assert accuracy > 0.80, f"Accuracy {accuracy} below threshold"
+
+def test_model_predictions_in_valid_range():
+    """Les prédictions doivent être dans [0, 1]"""
+    predictions = model.predict_proba(X_test)
+    assert (predictions >= 0).all() and (predictions <= 1).all()
+
+def test_model_inference_latency():
+    """L'inférence doit prendre moins de 100ms"""
+    import time
+    start = time.time()
+    _ = model.predict(X_test[:1000])
+    latency = (time.time() - start) / 1000
+    assert latency < 0.1, f"Latency {latency}s above threshold"
+```
+
+### Tests de Non-Régression
+
+```python
+def test_model_performance_vs_baseline():
+    """Le nouveau modèle doit être meilleur que la baseline"""
+    baseline_accuracy = 0.75  # Stocké depuis la version précédente
+    new_accuracy = new_model.score(X_test, y_test)
+    assert new_accuracy >= baseline_accuracy - 0.02  # Tolérance de 2%
+```
+
+## 🚢 Déploiement
+
+### Stratégies de Déploiement
+
+**Blue-Green Deployment**
+
+```
+Production (Blue)  ←─── Traffic 100%
+    ↓ [Deploy new version]
+Staging (Green)    ←─── Traffic 0%
+    ↓ [Validation]
+Production (Green) ←─── Traffic 100%
+Production (Blue)  ←─── Archived
+```
+
+**Canary Release**
+
+```
+Version 1.0 ←─── Traffic 95%
+Version 2.0 ←─── Traffic 5%
+    ↓ [Monitor metrics]
+Version 2.0 ←─── Traffic 10% → 25% → 50% → 100%
+```
+
+**A/B Testing**
+
+```
+Control (A)    ←─── Random 50% users
+Treatment (B)  ←─── Random 50% users
+    ↓ [Compare metrics]
+Winner deployed to 100%
+```
+
+### Pipeline CI/CD
+
+```yaml
+# .github/workflows/ml-deploy.yml
+name: ML Model Deployment
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Tests
+        run: |
+          pytest tests/ --cov
+      
+  train:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Train Model
+        run: |
+          python train.py
+      - name: Validate Performance
+        run: |
+          python validate.py
+      - name: Upload Model
+        uses: actions/upload-artifact@v3
+        with:
+          name: model
+          path: model.pkl
+  
+  deploy-staging:
+    needs: train
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging
+        run: |
+          # Deploy logic
+      - name: Run Integration Tests
+        run: |
+          pytest tests/integration/
+  
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to Production
+        run: |
+          # Deploy with canary strategy
+```
+
+## 📊 Monitoring en Production
+
+### Métriques à Surveiller
+
+**Performance du Modèle**
+
+- Accuracy, Precision, Recall en temps réel
+- Distribution des prédictions
+- Temps d'inférence (p50, p95, p99)
+
+**Qualité des Données**
+
+- Data drift (distribution features)
+- Concept drift (relation feature-target)
+- Valeurs manquantes
+- Outliers détectés
+
+**Infrastructure**
+
+- CPU/Memory utilisation
+- Latence API
+- Taux d'erreur
+- Throughput (req/s)
+
+### Alertes Automatiques
+
+```python
+# Configuration d'alertes
+alerts = {
+    "accuracy_drop": {
+        "metric": "accuracy",
+        "threshold": 0.75,
+        "window": "1h",
+        "action": "notify_team"
+    },
+    "high_latency": {
+        "metric": "p95_latency",
+        "threshold": 500,  # ms
+        "window": "5m",
+        "action": "scale_up"
+    },
+    "data_drift": {
+        "metric": "drift_score",
+        "threshold": 0.7,
+        "window": "1d",
+        "action": "trigger_retrain"
+    }
+}
+```
+
+### Dashboard de Monitoring
+
+Éléments essentiels d'un dashboard :
+
+1. **Vue d'ensemble** : Santé globale du système
+2. **Performance modèle** : Métriques clés en temps réel
+3. **Qualité données** : Drift detection, anomalies
+4. **Infrastructure** : Ressources, latence
+5. **Business metrics** : Impact métier réel
+
+## 🔄 Maintenance et Retraining
+
+### Stratégie de Retraining
+
+**Retraining Périodique**
+
+- Fréquence fixe (ex: mensuelle)
+- Indépendant des performances
+- Adapté à données stables
+
+**Retraining Conditionnel**
+
+- Déclenché par drift detection
+- Basé sur dégradation performance
+- Plus réactif et efficace
+
+**Retraining Continu**
+
+- En ligne (online learning)
+- Adaptatif en temps réel
+- Complexe à mettre en œuvre
+
+### Checklist de Retraining
+
+Avant de déployer un modèle retrained :
+
+- [ ] Nouvelles données validées (qualité)
+- [ ] Retraining sur données représentatives
+- [ ] Performance validée sur test set
+- [ ] Pas de régression vs. version précédente
+- [ ] Tests de non-régression passés
+- [ ] Audit de biais réalisé
+- [ ] Documentation mise à jour
+- [ ] Approbation obtenue
+
+## 📈 Mesure de la Valeur Livrée
+
+### Métriques de Delivery
+
+**Vélocité**
+
+- Story points livrés par sprint
+- Tendance sur 6 sprints
+
+**Lead Time**
+
+- Temps idée → production
+- Objectif : < 3 mois pour MVP
+
+**Cycle Time**
+
+- Temps développement → déploiement
+- Objectif : < 2 semaines
+
+**Deployment Frequency**
+
+- Nombre de déploiements / mois
+- Objectif : ≥ 2 déploiements / mois
+
+### ROI et Impact Métier
+
+Mesurer l'impact réel :
+
+- **Gains de productivité** : Temps économisé
+- **Réduction de coûts** : Économies réalisées
+- **Augmentation de revenus** : Upsell, rétention
+- **Amélioration qualité** : Réduction erreurs
+
+**Calcul de ROI :**
+
+```
+ROI = (Gains - Coûts) / Coûts × 100%
+
+Exemple:
+Gains annuels: 500k€
+Coûts projet: 200k€
+ROI = (500k - 200k) / 200k = 150%
+```
+
+---
+
+::: {.callout-note}
+## 🎯 Félicitations !
+Vous maîtrisez maintenant les trois piliers de la gestion de projet IA : [Cadrage](cadrage.qmd), [Gouvernance](gouvernance.qmd), et **Delivery** !
+:::

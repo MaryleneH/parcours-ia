@@ -1,0 +1,269 @@
+/*-- scss:defaults --*/
+
+/* Premium Pink-Gray Color Scheme */
+:root {
+  /* Primary Colors - Pink tones */
+  --pink-primary: #d4a5a5;
+  --pink-light: #e8c5c5;
+  --pink-lighter: #f5e5e5;
+  --pink-dark: #b88080;
+  
+  /* Gray tones */
+  --gray-primary: #8c8c8c;
+  --gray-light: #b8b8b8;
+  --gray-lighter: #e0e0e0;
+  --gray-dark: #5c5c5c;
+  
+  /* Background colors */
+  --bg-main: #fafafa;
+  --bg-secondary: #f5f5f5;
+  --bg-card: #ffffff;
+  
+  /* Text colors */
+  --text-primary: #2d2d2d;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8c8c8c;
+  
+  /* Accent colors */
+  --accent-primary: #d4a5a5;
+  --accent-hover: #b88080;
+  
+  /* Border colors */
+  --border-color: #e0e0e0;
+  --border-subtle: #f0f0f0;
+}
+
+/*-- scss:rules --*/
+
+/* Body and main elements */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar styling */
+.navbar {
+  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--gray-primary) 100%) !important;
+  border-bottom: 2px solid var(--pink-dark);
+  box-shadow: 0 2px 8px rgba(212, 165, 165, 0.2);
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--pink-lighter) !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background-color: var(--pink-lighter);
+  color: var(--pink-dark);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--pink-dark);
+  font-weight: 600;
+}
+
+h1 {
+  border-bottom: 3px solid var(--pink-primary);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Links */
+a {
+  color: var(--pink-dark);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Cards and content blocks */
+.card,
+.content-block {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(212, 165, 165, 0.15);
+}
+
+/* Code blocks */
+pre {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--pink-primary);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+code {
+  background-color: var(--pink-lighter);
+  color: var(--pink-dark);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--pink-primary);
+  border-color: var(--pink-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* Table of contents */
+.sidebar nav[role="doc-toc"] {
+  background-color: var(--bg-card);
+  border-left: 3px solid var(--pink-primary);
+  padding: 1rem;
+}
+
+.sidebar nav[role="doc-toc"] ul li a {
+  color: var(--text-secondary);
+}
+
+.sidebar nav[role="doc-toc"] ul li a:hover,
+.sidebar nav[role="doc-toc"] ul li a.active {
+  color: var(--pink-dark);
+  font-weight: 600;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+table thead {
+  background-color: var(--pink-lighter);
+  color: var(--pink-dark);
+}
+
+table th,
+table td {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+}
+
+table tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+/* Footer */
+.page-footer {
+  background: linear-gradient(135deg, var(--gray-primary) 0%, var(--pink-primary) 100%);
+  color: white;
+  border-top: 2px solid var(--pink-dark);
+}
+
+.page-footer a {
+  color: white;
+}
+
+/* Search */
+.aa-Form {
+  border: 2px solid var(--pink-primary);
+  border-radius: 4px;
+}
+
+.aa-Input:focus {
+  border-color: var(--accent-hover);
+  box-shadow: 0 0 0 0.2rem rgba(212, 165, 165, 0.25);
+}
+
+/* New Romance specific styles */
+.new-romance-section {
+  background: linear-gradient(to bottom, var(--pink-lighter), white);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.new-romance-section h1,
+.new-romance-section h2,
+.new-romance-section h3 {
+  color: var(--pink-primary);
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--pink-primary);
+  background-color: var(--pink-lighter);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* Callout boxes */
+.callout {
+  border-left: 4px solid var(--pink-primary);
+  background-color: var(--pink-lighter);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+
+.callout-note {
+  border-left-color: var(--gray-primary);
+  background-color: var(--gray-lighter);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+  
+  .card,
+  .content-block {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+}

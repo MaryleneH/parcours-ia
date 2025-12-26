@@ -1,0 +1,403 @@
+---
+title: "Niveau Intermédiaire"
+subtitle: "Approfondissement en Machine Learning et Deep Learning"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 🚀 Bienvenue au Niveau Intermédiaire
+
+Vous maîtrisez les bases ? Il est temps d'approfondir vos connaissances avec des algorithmes avancés, le deep learning, et les meilleures pratiques de la data science moderne.
+
+## 📖 Module 1 : Algorithmes Avancés
+
+### Arbres de Décision et Forêts Aléatoires
+
+Les arbres de décision sont des modèles puissants et interprétables.
+
+```python
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+# Arbre de décision simple
+tree = DecisionTreeClassifier(max_depth=5, random_state=42)
+tree.fit(X_train, y_train)
+
+# Forêt aléatoire (ensemble)
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+print(f"Score RF: {rf.score(X_test, y_test):.2%}")
+```
+
+::: {.callout-note}
+#### Avantages des Random Forests
+- Réduction du surapprentissage
+- Gestion des variables catégorielles
+- Importance des features
+- Performance robuste
+:::
+
+### Gradient Boosting
+
+Technique d'ensemble basée sur le boosting séquentiel.
+
+```python
+from sklearn.ensemble import GradientBoostingClassifier
+import xgboost as xgb
+import lightgbm as lgb
+
+# Gradient Boosting classique
+gb = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
+gb.fit(X_train, y_train)
+
+# XGBoost (plus rapide et performant)
+xgb_model = xgb.XGBClassifier(n_estimators=100, learning_rate=0.1)
+xgb_model.fit(X_train, y_train)
+
+# LightGBM (encore plus efficace)
+lgb_model = lgb.LGBMClassifier(n_estimators=100)
+lgb_model.fit(X_train, y_train)
+```
+
+### Support Vector Machines (SVM)
+
+Algorithmes puissants pour la classification et la régression.
+
+```python
+from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+
+# Important : normaliser les données pour SVM
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# SVM avec kernel RBF
+svm = SVC(kernel='rbf', C=1.0, gamma='scale')
+svm.fit(X_train_scaled, y_train)
+```
+
+## 🧠 Module 2 : Introduction au Deep Learning
+
+### Réseaux de Neurones Artificiels
+
+Architecture de base du deep learning.
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# Création d'un réseau simple
+model = keras.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(input_dim,)),
+    layers.Dropout(0.3),
+    layers.Dense(64, activation='relu'),
+    layers.Dropout(0.3),
+    layers.Dense(num_classes, activation='softmax')
+])
+
+# Compilation
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Entraînement
+history = model.fit(
+    X_train, y_train,
+    epochs=50,
+    batch_size=32,
+    validation_split=0.2,
+    verbose=1
+)
+```
+
+### Réseaux de Neurones Convolutifs (CNN)
+
+Spécialisés pour le traitement d'images.
+
+```python
+# CNN pour la classification d'images
+cnn_model = keras.Sequential([
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)),
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.Flatten(),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+cnn_model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+```
+
+### Réseaux Récurrents (RNN/LSTM)
+
+Pour les séquences temporelles et le NLP.
+
+```python
+from tensorflow.keras.layers import LSTM, GRU
+
+# Modèle LSTM pour séries temporelles
+lstm_model = keras.Sequential([
+    layers.LSTM(50, return_sequences=True, input_shape=(timesteps, features)),
+    layers.LSTM(50),
+    layers.Dense(1)
+])
+
+lstm_model.compile(optimizer='adam', loss='mse')
+```
+
+## 🔧 Module 3 : Feature Engineering Avancé
+
+### Transformation de Variables
+
+```python
+from sklearn.preprocessing import (
+    StandardScaler, MinMaxScaler, RobustScaler,
+    PolynomialFeatures, PowerTransformer
+)
+
+# Normalisation robuste aux outliers
+scaler = RobustScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Création de features polynomiales
+poly = PolynomialFeatures(degree=2, include_bias=False)
+X_poly = poly.fit_transform(X)
+
+# Transformation de Box-Cox
+pt = PowerTransformer(method='box-cox')
+X_transformed = pt.fit_transform(X_positive)
+```
+
+### Sélection de Features
+
+```python
+from sklearn.feature_selection import (
+    SelectKBest, f_classif,
+    RFE, SelectFromModel
+)
+
+# Sélection univariée
+selector = SelectKBest(f_classif, k=10)
+X_selected = selector.fit_transform(X, y)
+
+# Recursive Feature Elimination
+rfe = RFE(estimator=RandomForestClassifier(), n_features_to_select=10)
+X_rfe = rfe.fit_transform(X, y)
+
+# Sélection basée sur l'importance
+selector = SelectFromModel(RandomForestClassifier(), threshold='median')
+X_important = selector.fit_transform(X, y)
+```
+
+### Encodage de Variables Catégorielles
+
+```python
+from sklearn.preprocessing import (
+    LabelEncoder, OneHotEncoder,
+    OrdinalEncoder, TargetEncoder
+)
+
+# One-Hot Encoding
+ohe = OneHotEncoder(sparse=False, handle_unknown='ignore')
+X_encoded = ohe.fit_transform(X_categorical)
+
+# Target Encoding (utile pour haute cardinalité)
+from category_encoders import TargetEncoder
+te = TargetEncoder()
+X_target_encoded = te.fit_transform(X_categorical, y)
+```
+
+## 📊 Module 4 : Optimisation et Tuning
+
+### Hyperparameter Tuning
+
+```python
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from scipy.stats import randint, uniform
+
+# Grid Search
+param_grid = {
+    'n_estimators': [100, 200, 300],
+    'max_depth': [10, 20, 30],
+    'min_samples_split': [2, 5, 10]
+}
+
+grid_search = GridSearchCV(
+    RandomForestClassifier(),
+    param_grid,
+    cv=5,
+    scoring='f1',
+    n_jobs=-1
+)
+grid_search.fit(X_train, y_train)
+print(f"Meilleurs paramètres: {grid_search.best_params_}")
+
+# Random Search (plus efficace)
+param_distributions = {
+    'n_estimators': randint(100, 500),
+    'max_depth': randint(5, 50),
+    'min_samples_split': randint(2, 20)
+}
+
+random_search = RandomizedSearchCV(
+    RandomForestClassifier(),
+    param_distributions,
+    n_iter=50,
+    cv=5,
+    random_state=42
+)
+```
+
+### Validation Avancée
+
+```python
+from sklearn.model_selection import (
+    StratifiedKFold, TimeSeriesSplit,
+    cross_validate
+)
+
+# Validation stratifiée (classes déséquilibrées)
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+scores = cross_val_score(model, X, y, cv=skf)
+
+# Pour séries temporelles
+tscv = TimeSeriesSplit(n_splits=5)
+for train_idx, test_idx in tscv.split(X):
+    X_train, X_test = X[train_idx], X[test_idx]
+    y_train, y_test = y[train_idx], y[test_idx]
+```
+
+## 🎯 Module 5 : Gestion du Déséquilibre
+
+### Techniques de Rééchantillonnage
+
+```python
+from imblearn.over_sampling import SMOTE, ADASYN
+from imblearn.under_sampling import RandomUnderSampler
+from imblearn.combine import SMOTETomek
+
+# SMOTE : Synthetic Minority Over-sampling
+smote = SMOTE(random_state=42)
+X_resampled, y_resampled = smote.fit_resample(X_train, y_train)
+
+# Combinaison over-sampling et under-sampling
+smotetomek = SMOTETomek(random_state=42)
+X_balanced, y_balanced = smotetomek.fit_resample(X_train, y_train)
+```
+
+### Ajustement des Poids
+
+```python
+from sklearn.utils.class_weight import compute_class_weight
+
+# Calculer les poids automatiquement
+class_weights = compute_class_weight(
+    'balanced',
+    classes=np.unique(y_train),
+    y=y_train
+)
+class_weight_dict = dict(enumerate(class_weights))
+
+# Utiliser dans le modèle
+rf = RandomForestClassifier(class_weight='balanced')
+rf.fit(X_train, y_train)
+```
+
+## 💡 Module 6 : Interprétabilité
+
+### Importance des Features
+
+```python
+import matplotlib.pyplot as plt
+
+# Random Forest feature importance
+importances = rf.feature_importances_
+indices = np.argsort(importances)[::-1]
+
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(importances)), importances[indices])
+plt.title("Importance des Features")
+plt.show()
+```
+
+### SHAP Values
+
+```python
+import shap
+
+# Créer l'explainer
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+
+# Visualisations
+shap.summary_plot(shap_values, X_test)
+shap.force_plot(explainer.expected_value, shap_values[0], X_test.iloc[0])
+```
+
+## 🚀 Projets Pratiques
+
+### Projet 1 : Prédiction de Churn
+
+Prédire le départ de clients avec des données déséquilibrées.
+
+**Compétences** : Gradient Boosting, SMOTE, feature engineering, optimisation
+
+### Projet 2 : Classification d'Images Avancée
+
+Classifier des images complexes (CIFAR-10, ImageNet subset).
+
+**Compétences** : CNN, data augmentation, transfer learning
+
+### Projet 3 : Prédiction de Séries Temporelles
+
+Prévoir des ventes ou des prix avec des données temporelles.
+
+**Compétences** : LSTM, feature engineering temporel, validation temporelle
+
+## 📚 Ressources pour Approfondir
+
+### Frameworks et Bibliothèques
+
+- **Scikit-learn** : ML classique
+- **TensorFlow/Keras** : Deep learning
+- **PyTorch** : Deep learning recherche
+- **XGBoost/LightGBM** : Gradient boosting
+
+### Livres Avancés
+
+- "Deep Learning" - Ian Goodfellow
+- "Pattern Recognition and Machine Learning" - Christopher Bishop
+- "The Elements of Statistical Learning" - Hastie, Tibshirani, Friedman
+
+## ✅ Check-list de Compétences
+
+Avant de passer au niveau expérimenté :
+
+- [ ] Maîtrise de Random Forests et Gradient Boosting
+- [ ] Création et entraînement de réseaux de neurones
+- [ ] Compréhension des CNN pour les images
+- [ ] Utilisation de LSTM pour les séquences
+- [ ] Feature engineering avancé
+- [ ] Hyperparameter tuning efficace
+- [ ] Gestion des données déséquilibrées
+- [ ] Interprétation de modèles complexes
+
+---
+
+::: {.callout-note}
+## 🎓 Prochaine Étape
+Prêt pour les défis de pointe ? Découvrez le [Niveau Expérimenté](experimente.qmd) !
+:::

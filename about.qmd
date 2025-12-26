@@ -1,0 +1,120 @@
+---
+title: "À Propos"
+subtitle: "Découvrez le projet Parcours IA"
+date: last-modified
+format:
+  html:
+    toc: true
+---
+
+## 🎯 Mission
+
+**Parcours IA** est une initiative visant à démocratiser l'accès aux connaissances en Intelligence Artificielle pour les professionnels des données, notamment les statisticiens et économistes.
+
+### Objectifs du Projet
+
+Notre plateforme a pour objectifs de :
+
+1. **Structurer l'apprentissage** : Proposer un parcours pédagogique progressif et cohérent
+2. **Favoriser la pratique** : Offrir des exemples de code exécutables et reproductibles
+3. **Intégrer les méthodologies** : Combiner compétences techniques et gestion de projet
+4. **Partager les connaissances** : Créer une ressource collaborative et évolutive
+
+## 👥 Public Cible
+
+Cette plateforme s'adresse principalement aux :
+
+- **Statisticiens** souhaitant explorer le machine learning et l'IA
+- **Économistes** intéressés par les applications de l'IA dans leur domaine
+- **Data Scientists** cherchant à approfondir leurs compétences
+- **Chefs de projet** gérant des initiatives d'IA
+- **Professionnels en reconversion** vers les métiers de la data et de l'IA
+
+## 📖 Structure du Contenu
+
+### Parcours d'Apprentissage IA
+
+Notre contenu est organisé en trois niveaux :
+
+::: {.card}
+**Niveau Débutant** 🌱
+
+- Introduction aux concepts fondamentaux
+- Premiers algorithmes de machine learning
+- Manipulation de données avec Python et R
+- Visualisation et exploration de données
+:::
+
+::: {.card}
+**Niveau Intermédiaire** 🚀
+
+- Algorithmes avancés de machine learning
+- Introduction au deep learning
+- Feature engineering et sélection de modèles
+- Validation et évaluation de performances
+:::
+
+::: {.card}
+**Niveau Expérimenté** 💎
+
+- Architectures de deep learning avancées
+- IA générative et transformers
+- MLOps et déploiement en production
+- Éthique et IA responsable
+:::
+
+### Section PM/Scrum
+
+Nous intégrons également les méthodologies de gestion de projet agile adaptées aux projets d'IA :
+
+- **Cadrage** : Définition du problème et des objectifs
+- **Gouvernance** : Organisation et prise de décision
+- **Delivery** : Livraison itérative et amélioration continue
+
+### New Romance
+
+Une section expérimentale explorant les applications créatives et innovantes de l'IA.
+
+## 🛠️ Technologies Utilisées
+
+Ce site est construit avec :
+
+- **[Quarto](https://quarto.org/)** : Framework de publication scientifique et technique
+- **Python** : Pour les exemples de machine learning et data science
+- **R** : Pour les analyses statistiques et visualisations
+- **GitHub Pages** : Hébergement et déploiement automatique
+- **GitHub Actions** : CI/CD pour la publication automatique
+
+## 🤝 Contribution
+
+Ce projet est open source et accueille les contributions de la communauté :
+
+- **Proposer des améliorations** : Via des issues GitHub
+- **Contribuer du contenu** : Pull requests bienvenues
+- **Partager vos retours** : Vos commentaires sont précieux
+
+### Comment Contribuer
+
+1. Forkez le dépôt sur [GitHub](https://github.com/MaryleneH/parcours-ia)
+2. Créez une branche pour votre contribution
+3. Proposez vos modifications via une pull request
+4. Participez aux discussions et revues
+
+## 📜 Licence
+
+Ce projet est distribué sous licence ouverte pour encourager le partage et la collaboration.
+
+## 📧 Contact
+
+Pour toute question ou suggestion, n'hésitez pas à :
+
+- Ouvrir une issue sur [GitHub](https://github.com/MaryleneH/parcours-ia)
+- Contribuer aux discussions
+- Partager vos cas d'usage et retours d'expérience
+
+---
+
+::: {.callout-note}
+## 🌟 Remerciements
+Merci à tous les contributeurs et à la communauté open source qui rendent ce projet possible !
+:::

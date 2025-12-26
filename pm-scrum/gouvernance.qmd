@@ -1,0 +1,449 @@
+---
+title: "Gouvernance de Projet IA"
+subtitle: "Structurer la prise de décision et les responsabilités"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 🏛️ Pourquoi une Gouvernance Forte
+
+La gouvernance assure le succès à long terme des projets IA en :
+
+- **Structurant** la prise de décision
+- **Clarifiant** les rôles et responsabilités
+- **Assurant** la conformité et l'éthique
+- **Gérant** les risques de manière proactive
+- **Facilitant** la communication entre stakeholders
+
+## 👥 Structure Organisationnelle
+
+### Comité de Pilotage (COPIL)
+
+**Rôle** : Validation des orientations stratégiques et arbitrages majeurs
+
+**Composition :**
+
+- Sponsor exécutif
+- Product Owner
+- Responsable technique
+- Représentants métier
+- Expert conformité/éthique
+
+**Fréquence :** Mensuelle ou à jalons clés
+
+**Ordre du jour type :**
+
+1. Avancement vs. planning
+2. Résultats et métriques
+3. Risques et problèmes
+4. Décisions majeures
+5. Budget et ressources
+
+### Comité Technique
+
+**Rôle** : Validation des choix techniques et architecturaux
+
+**Composition :**
+
+- Lead Data Scientist
+- ML Engineers
+- Data Engineers
+- Architecte SI
+- Security Officer
+
+**Fréquence :** Bi-hebdomadaire
+
+### Équipe Projet
+
+Organisation typique d'une équipe IA :
+
+```
+Product Owner
+    │
+    ├─ Scrum Master
+    │
+    ├─ Data Science Team
+    │   ├─ Lead Data Scientist
+    │   ├─ Data Scientists (2-3)
+    │   └─ ML Engineers (1-2)
+    │
+    ├─ Data Engineering Team
+    │   ├─ Lead Data Engineer
+    │   └─ Data Engineers (1-2)
+    │
+    └─ Support Functions
+        ├─ Expert Métier
+        ├─ UX/UI Designer
+        └─ QA Engineer
+```
+
+## 📋 Rôles et Responsabilités (RACI)
+
+### Matrice RACI pour Décisions Clés
+
+**Légende :**
+
+- **R** : Responsible (Réalise)
+- **A** : Accountable (Approbateur)
+- **C** : Consulted (Consulté)
+- **I** : Informed (Informé)
+
+| Décision | PO | SM | DS Lead | DS | MLE | DE | COPIL |
+|----------|----|----|---------|----|----|----|----|
+| **Définition cas d'usage** | A | C | C | C | I | I | I |
+| **Priorisation backlog** | A | C | C | I | I | I | I |
+| **Choix d'algorithme** | C | I | A | R | C | I | I |
+| **Architecture technique** | C | I | C | C | A | R | I |
+| **Go/No-Go production** | C | I | C | C | C | I | A |
+| **Allocation budget** | C | I | I | I | I | I | A |
+
+### Product Owner
+
+**Responsabilités principales :**
+
+- Définir et communiquer la vision produit
+- Gérer et prioriser le product backlog
+- Valider les résultats métier
+- Interface avec les stakeholders
+- Arbitrer les trade-offs fonctionnels
+- Accepter ou rejeter les livrables
+
+**Compétences requises :**
+
+- Connaissance métier approfondie
+- Compréhension des concepts IA/ML
+- Capacité de priorisation
+- Communication efficace
+
+### Data Science Lead
+
+**Responsabilités principales :**
+
+- Définir la stratégie technique
+- Valider les choix d'algorithmes
+- Assurer la qualité des modèles
+- Mentorer l'équipe data science
+- Reviewer le code et les résultats
+- Veille technologique
+
+**Compétences requises :**
+
+- Expertise ML/IA confirmée
+- Leadership technique
+- Capacité de mentoring
+- Vision produit
+
+### Scrum Master / Delivery Manager
+
+**Responsabilités principales :**
+
+- Faciliter les cérémonies agiles
+- Lever les obstacles
+- Protéger l'équipe des interruptions
+- Coach agile de l'équipe
+- Suivre les indicateurs de performance
+- Amélioration continue
+
+**Spécificités IA :**
+
+- Comprendre les incertitudes de l'IA
+- Gérer les expérimentations
+- Faciliter la communication tech/métier
+
+## 🎯 Processus de Décision
+
+### Framework de Décision
+
+**Niveau 1 : Décisions Quotidiennes**
+
+- **Qui décide** : Équipe autonome
+- **Exemples** : Choix d'hyperparamètres, features à tester
+- **Process** : Discussion en daily, consensus
+
+**Niveau 2 : Décisions Tactiques**
+
+- **Qui décide** : PO + Tech Lead
+- **Exemples** : Priorisation sprint, choix d'architecture
+- **Process** : Réunion dédiée, documentation
+
+**Niveau 3 : Décisions Stratégiques**
+
+- **Qui décide** : COPIL
+- **Exemples** : Go/No-Go, pivot majeur, allocation budget
+- **Process** : Comité formel, vote si nécessaire
+
+### Escalation des Problèmes
+
+```
+Problème identifié
+    ↓
+Équipe (24h)
+    ↓ [non résolu]
+Scrum Master + PO (48h)
+    ↓ [non résolu]
+Tech Lead / Product Lead (1 semaine)
+    ↓ [non résolu]
+COPIL (décision rapide)
+```
+
+## 📊 Gestion des Risques
+
+### Registre des Risques
+
+Maintenir un registre vivant contenant :
+
+| ID | Risque | Probabilité | Impact | Score | Owner | Mitigation | Statut |
+|----|--------|-------------|--------|-------|-------|------------|--------|
+| R1 | Données insuffisantes | Moyenne | Élevé | 15 | DE Lead | POC early | Ouvert |
+| R2 | Performance modèle | Faible | Élevé | 10 | DS Lead | Benchmark | Fermé |
+
+**Score = Probabilité × Impact** (échelle 1-5 chacun)
+
+### Catégories de Risques IA
+
+**Risques Techniques**
+
+- Performance insuffisante du modèle
+- Scalabilité et latence
+- Dérive du modèle (data drift)
+- Problèmes d'infrastructure
+
+**Risques Données**
+
+- Qualité et complétude
+- Disponibilité et accès
+- Biais dans les données
+- Conformité RGPD
+
+**Risques Organisationnels**
+
+- Compétences manquantes
+- Résistance au changement
+- Turnover d'équipe
+- Budget insuffisant
+
+**Risques Métier**
+
+- Adoption utilisateur faible
+- ROI non atteint
+- Concurrence
+- Changement de priorités
+
+### Revue des Risques
+
+**Fréquence :** Hebdomadaire (équipe) + Mensuelle (COPIL)
+
+**Actions :**
+
+1. Identifier nouveaux risques
+2. Mettre à jour statut risques existants
+3. Évaluer efficacité des mitigations
+4. Ajuster plans d'action
+5. Escalader si nécessaire
+
+## 🛡️ Conformité et Éthique
+
+### Principes d'IA Responsable
+
+Les projets IA doivent respecter des principes éthiques :
+
+::: {.card}
+**Transparence**
+
+- Explicabilité des décisions
+- Documentation des modèles
+- Communication claire des limites
+:::
+
+::: {.card}
+**Équité et Non-Discrimination**
+
+- Détection et correction des biais
+- Tests sur populations diverses
+- Métriques de fairness
+:::
+
+::: {.card}
+**Confidentialité**
+
+- Respect du RGPD
+- Anonymisation des données
+- Sécurité des modèles
+:::
+
+::: {.card}
+**Responsabilité**
+
+- Traçabilité des décisions
+- Human-in-the-loop si nécessaire
+- Processus de recours
+:::
+
+### Checklist Éthique
+
+Avant déploiement, valider :
+
+- [ ] Audit de biais réalisé
+- [ ] Impact sur différents groupes évalué
+- [ ] Explicabilité du modèle assurée
+- [ ] Conformité RGPD validée
+- [ ] Données sensibles protégées
+- [ ] Processus de recours défini
+- [ ] Documentation éthique complète
+- [ ] Formation utilisateurs effectuée
+
+### Comité d'Éthique IA
+
+**Rôle :** Valider la conformité éthique des projets
+
+**Composition :**
+
+- Expert éthique/legal
+- Représentant DPO (Data Protection Officer)
+- Représentant diversité & inclusion
+- Expert technique
+- Représentant métier
+
+**Moment d'intervention :**
+
+- Cadrage initial
+- Avant POC
+- Avant production
+- Revue post-déploiement
+
+## 📈 Indicateurs de Performance
+
+### KPIs de Gouvernance
+
+**Efficacité de l'Équipe**
+
+- Vélocité d'équipe (stable dans le temps ?)
+- Nombre d'expérimentations par sprint
+- Temps moyen de résolution des blocages
+- Taux de présence aux cérémonies
+
+**Qualité**
+
+- Code coverage (tests)
+- Nombre de bugs en production
+- Temps de réponse aux incidents
+- Score de revue de code
+
+**Risques et Conformité**
+
+- Nombre de risques ouverts vs. fermés
+- Délai moyen de résolution
+- % de projets avec audit éthique
+- Conformité réglementaire (%)
+
+**Satisfaction**
+
+- NPS de l'équipe (bien-être)
+- Satisfaction des stakeholders
+- Taux de turnover
+- Feedback utilisateurs finaux
+
+### Reporting Périodique
+
+**Rapport Hebdomadaire (Équipe)**
+
+- Avancement sprint en cours
+- Résultats expérimentations
+- Blocages identifiés
+- Prochaines étapes
+
+**Rapport Mensuel (COPIL)**
+
+- Synthèse progrès vs. objectifs
+- Métriques clés (modèle + métier)
+- Risques et actions
+- Budget consommé vs. prévu
+- Décisions requises
+
+**Rapport Trimestriel (Direction)**
+
+- Impact métier réalisé
+- ROI atteint vs. prévu
+- Apprentissages clés
+- Roadmap à venir
+
+## 📚 Documentation
+
+### Documents Obligatoires
+
+**Documentation Technique**
+
+- Architecture des systèmes
+- Description des modèles
+- Pipelines de données
+- Procédures de déploiement
+- Runbooks opérationnels
+
+**Documentation Projet**
+
+- Cahier des charges
+- Product backlog
+- Sprint retrospectives
+- Décisions majeures (ADR - Architecture Decision Records)
+
+**Documentation Éthique et Conformité**
+
+- Audit de biais
+- Évaluation d'impact (PIA)
+- Registre des traitements RGPD
+- Rapports d'audit
+
+### Gestion des Connaissances
+
+**Knowledge Base Centralisée**
+
+- Wiki technique (Confluence, Notion)
+- Repository code (GitHub, GitLab)
+- Suivi expérimentations (MLflow)
+- Documentation API (Swagger/OpenAPI)
+
+**Onboarding de Nouveaux Membres**
+
+- Document d'accueil projet
+- Architecture overview
+- Setup environnement
+- Contacts clés
+
+## 🔄 Amélioration Continue
+
+### Retrospective Approfondie
+
+**Mensuelle - Focus Gouvernance :**
+
+Questions à aborder :
+
+1. La prise de décision est-elle efficace ?
+2. Les rôles sont-ils clairs ?
+3. La communication fonctionne-t-elle ?
+4. Les processus sont-ils adaptés ?
+5. Que pouvons-nous améliorer ?
+
+**Format :**
+
+- Start : Ce qu'on devrait commencer
+- Stop : Ce qu'on devrait arrêter
+- Continue : Ce qui fonctionne bien
+
+### Métriques d'Amélioration
+
+Suivre l'évolution trimestrielle :
+
+- Temps de cycle (idée → production)
+- Lead time des décisions
+- Qualité des livrables
+- Satisfaction équipe
+
+---
+
+::: {.callout-note}
+## 🎯 Prochaine Étape
+Avec une gouvernance solide en place, concentrez-vous sur la [Delivery](delivery.qmd) pour livrer de la valeur rapidement.
+:::

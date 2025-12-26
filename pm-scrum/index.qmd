@@ -1,0 +1,317 @@
+---
+title: "PM/Scrum pour Projets IA"
+subtitle: "Gérer efficacement vos projets d'Intelligence Artificielle"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 2
+---
+
+## 🎯 Bienvenue au Hub PM/Scrum
+
+La gestion de projets d'Intelligence Artificielle présente des défis uniques. Cette section vous guide à travers les meilleures pratiques pour cadrer, gouverner et livrer des projets IA avec succès.
+
+## 📊 Spécificités des Projets IA
+
+### Défis Particuliers
+
+Les projets IA diffèrent des projets IT traditionnels :
+
+::: {.card}
+**Incertitude Technique**
+
+- Résultats non garantis
+- Dépendance à la qualité des données
+- Besoin d'expérimentation itérative
+:::
+
+::: {.card}
+**Complexité des Données**
+
+- Collection et préparation coûteuses
+- Problèmes de qualité et de biais
+- Évolution continue des données
+:::
+
+::: {.card}
+**Compétences Hybrides**
+
+- Équipes pluridisciplinaires
+- Expertise technique et métier
+- Communication entre silos
+:::
+
+## 🗺️ Les Trois Piliers
+
+Notre approche s'articule autour de trois domaines clés :
+
+### 1. [Cadrage](cadrage.qmd)
+
+Définir correctement le problème et les objectifs.
+
+**Contenus :**
+
+- Identification du cas d'usage
+- Définition du périmètre
+- Estimation de la faisabilité
+- Validation de la disponibilité des données
+
+### 2. [Gouvernance](gouvernance.qmd)
+
+Structurer la prise de décision et les responsabilités.
+
+**Contenus :**
+
+- Organisation de l'équipe
+- Rôles et responsabilités
+- Gestion des risques
+- Conformité et éthique
+
+### 3. [Delivery](delivery.qmd)
+
+Livrer de la valeur de manière itérative et continue.
+
+**Contenus :**
+
+- Sprints adaptés à l'IA
+- Métriques de succès
+- Tests et validation
+- Déploiement progressif
+
+## 🔄 Méthodologie Agile pour l'IA
+
+### Framework Scrum Adapté
+
+L'approche Scrum classique nécessite des adaptations pour l'IA :
+
+```
+Sprint 0 (Cadrage)
+    ↓
+Sprint 1-2 (Exploration & POC)
+    ↓
+Sprint 3-N (Développement itératif)
+    ↓
+Sprint N+1 (Industrialisation)
+    ↓
+Maintenance continue
+```
+
+### Sprints IA
+
+**Sprint d'Exploration (2-3 semaines)**
+
+- Analyse exploratoire des données
+- Tests de faisabilité
+- Benchmark d'algorithmes
+- Définition de la baseline
+
+**Sprint de Développement (2 semaines)**
+
+- Feature engineering
+- Entraînement de modèles
+- Optimisation des hyperparamètres
+- Évaluation des performances
+
+**Sprint d'Industrialisation (2-3 semaines)**
+
+- Packaging du modèle
+- Création d'API
+- Tests d'intégration
+- Documentation
+
+## 👥 Rôles et Équipe
+
+### Composition d'une Équipe IA
+
+::: {.card}
+**Product Owner**
+
+- Définit la vision produit
+- Priorise le backlog
+- Valide les résultats métier
+:::
+
+::: {.card}
+**Scrum Master / Delivery Manager**
+
+- Facilite les cérémonies
+- Lève les obstacles
+- Protège l'équipe
+:::
+
+::: {.card}
+**Data Scientists**
+
+- Explorent et modélisent
+- Expérimentent des algorithmes
+- Évaluent les performances
+:::
+
+::: {.card}
+**ML Engineers**
+
+- Industrialisent les modèles
+- Construisent les pipelines
+- Assurent le déploiement
+:::
+
+::: {.card}
+**Data Engineers**
+
+- Préparent les données
+- Construisent les infrastructures
+- Maintiennent les pipelines de données
+:::
+
+## 📋 Artefacts Clés
+
+### Product Backlog IA
+
+Éléments typiques d'un backlog de projet IA :
+
+**User Stories Métier**
+```
+En tant que [utilisateur]
+Je veux [fonctionnalité]
+Afin de [bénéfice métier]
+```
+
+**Technical Stories**
+```
+En tant que data scientist
+Je veux explorer la distribution des variables
+Afin d'identifier les features pertinentes
+```
+
+**Spikes d'Exploration**
+```
+Investiguer la faisabilité d'utiliser
+un modèle transformer pour [tâche]
+Time-boxé à 2 jours
+```
+
+### Definition of Done (DoD) pour l'IA
+
+Critères d'acceptation spécifiques à l'IA :
+
+- [ ] Métriques de performance atteintes (accuracy, F1, etc.)
+- [ ] Modèle validé sur données de test
+- [ ] Analyse des erreurs documentée
+- [ ] Code versionné et reviewé
+- [ ] Tests unitaires passés
+- [ ] Documentation technique complète
+- [ ] Validation éthique et biais effectuée
+- [ ] Prêt pour déploiement (si applicable)
+
+## 📊 Métriques et KPIs
+
+### Métriques de Performance Modèle
+
+Suivre l'évolution des modèles :
+
+- **Métriques techniques** : Accuracy, Precision, Recall, F1, AUC-ROC
+- **Métriques métier** : ROI, conversions, économies réalisées
+- **Métriques opérationnelles** : Latence, throughput, coût d'inférence
+
+### Vélocité d'Équipe
+
+Adapter la vélocité au contexte IA :
+
+- Nombre d'expérimentations par sprint
+- Stories/points complétés
+- Temps moyen par itération de modèle
+
+## 🎓 Cérémonies Agiles
+
+### Sprint Planning
+
+**Spécificités IA :**
+
+- Inclure du temps pour l'exploration
+- Prévoir des spikes pour l'incertitude
+- Définir des critères de succès mesurables
+
+### Daily Stand-up
+
+Questions adaptées :
+
+1. Qu'ai-je fait hier ?
+2. Que vais-je faire aujourd'hui ?
+3. **Quelles expérimentations ai-je lancées ?**
+4. **Quels résultats intermédiaires ai-je observés ?**
+5. Ai-je des blocages ?
+
+### Sprint Review
+
+**Démonstration :**
+
+- Résultats des expérimentations
+- Évolution des métriques
+- Comparaison avec la baseline
+- Analyses d'erreurs
+
+### Sprint Retrospective
+
+**Points d'attention IA :**
+
+- Qualité des données
+- Efficacité des expérimentations
+- Collaboration data/dev
+- Outils et infrastructure
+
+## 🛠️ Outils de Gestion
+
+### Outils Recommandés
+
+**Gestion de Projet**
+
+- Jira / Azure DevOps : Backlog et sprints
+- Confluence / Notion : Documentation
+- Miro / Mural : Ateliers collaboratifs
+
+**Suivi d'Expérimentations**
+
+- MLflow : Tracking d'expériences
+- Weights & Biases : Visualisation
+- DVC : Versioning de données et modèles
+
+**Collaboration**
+
+- GitHub / GitLab : Code et revues
+- Slack / Teams : Communication
+- Calendly : Planification
+
+## 🚀 Best Practices
+
+### Conseils pour le Succès
+
+1. **Commencer petit** : POC avant production
+2. **Itérer rapidement** : Cycles courts d'expérimentation
+3. **Mesurer tôt** : Baseline dès le premier sprint
+4. **Communiquer clairement** : Vulgariser les résultats techniques
+5. **Gérer les attentes** : Transparence sur les incertitudes
+6. **Documenter** : Traçabilité des décisions et expérimentations
+7. **Automatiser** : CI/CD pour réduire les tâches manuelles
+8. **Monitorer** : Surveillance continue en production
+
+## 📖 Ressources Complémentaires
+
+### Pour Approfondir
+
+- "The AI Product Manager's Handbook" - Irene Bratsis
+- "Machine Learning Engineering" - Andriy Burkov
+- "Building Machine Learning Powered Applications" - Emmanuel Ameisen
+
+### Certifications
+
+- Scrum Master Certification (CSM)
+- Professional Scrum Product Owner (PSPO)
+- Google Cloud Professional ML Engineer
+
+---
+
+::: {.callout-note}
+## 🎯 Prochaines Étapes
+Explorez chacun des trois piliers en détail pour maîtriser la gestion de projets IA de bout en bout.
+:::

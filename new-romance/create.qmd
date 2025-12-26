@@ -1,0 +1,549 @@
+---
+title: "Créer avec l'IA"
+subtitle: "Guides Pratiques pour Vos Projets Créatifs"
+date: last-modified
+format:
+  html:
+    toc: true
+---
+
+::: {.new-romance-section}
+
+## 🎨 Passez à l'Action
+
+Cette page vous guide pas à pas dans la création de vos propres projets artistiques avec l'Intelligence Artificielle.
+
+:::
+
+## 🚀 Guide 1 : Générer des Images Artistiques
+
+### Prérequis
+
+- Compte Hugging Face (gratuit)
+- Python 3.8+ installé
+- 8 GB RAM minimum (16 GB recommandé)
+
+### Installation
+
+```bash
+# Installer les dépendances
+pip install diffusers transformers accelerate torch
+
+# Installer les packages de visualisation
+pip install pillow matplotlib
+```
+
+### Code de Base
+
+```python
+from diffusers import StableDiffusionPipeline
+import torch
+
+# Charger le modèle
+model_id = "runwayml/stable-diffusion-v1-5"
+pipe = StableDiffusionPipeline.from_pretrained(
+    model_id,
+    torch_dtype=torch.float16
+)
+pipe = pipe.to("cuda")  # Utiliser GPU si disponible
+
+# Générer une image
+prompt = "Un paysage onirique avec des montagnes roses et un ciel étoilé, style impressionniste"
+image = pipe(
+    prompt,
+    num_inference_steps=50,
+    guidance_scale=7.5
+).images[0]
+
+# Sauvegarder
+image.save("mon_oeuvre.png")
+```
+
+### Techniques Avancées
+
+**1. Negative Prompting**
+
+```python
+negative_prompt = "ugly, blurry, low quality, distorted"
+image = pipe(
+    prompt=prompt,
+    negative_prompt=negative_prompt,
+    num_inference_steps=50
+).images[0]
+```
+
+**2. Style Transfer avec ControlNet**
+
+```python
+from diffusers import ControlNetModel, StableDiffusionControlNetPipeline
+
+# Charger ControlNet
+controlnet = ControlNetModel.from_pretrained(
+    "lllyasviel/sd-controlnet-canny"
+)
+
+pipe = StableDiffusionControlNetPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    controlnet=controlnet
+)
+
+# Utiliser une image de référence pour le style
+```
+
+**3. Variations et Séries**
+
+```python
+# Générer plusieurs variations
+prompts = [
+    "Aurore boréale dans une forêt mystique",
+    "Aurore boréale au-dessus d'un océan calme",
+    "Aurore boréale dans un paysage urbain futuriste"
+]
+
+for i, prompt in enumerate(prompts):
+    image = pipe(prompt).images[0]
+    image.save(f"variation_{i+1}.png")
+```
+
+### Conseils de Prompting
+
+**Structure de Prompt Efficace :**
+
+```
+[Sujet principal] + [Action/État] + [Environnement] + 
+[Style artistique] + [Éclairage] + [Qualité]
+```
+
+**Exemple :**
+
+```
+Un robot dansant, mouvement gracieux, dans un jardin zen,
+style aquarelle japonaise, lumière douce du matin,
+haute résolution, détails fins
+```
+
+**Mots-Clés Puissants :**
+
+- **Styles :** impressionniste, art nouveau, cyberpunk, steampunk
+- **Artistes :** "style de Monet", "à la manière de Van Gogh"
+- **Qualité :** 4K, ultra detailed, masterpiece, award winning
+- **Ambiance :** ethereal, mystical, dramatic, serene
+
+## ✍️ Guide 2 : Écriture Créative avec LLM
+
+### Configuration
+
+```python
+from transformers import pipeline
+
+# Charger un modèle de génération de texte
+generator = pipeline('text-generation', model='gpt2-medium')
+
+# Alternative : utiliser l'API OpenAI
+import openai
+openai.api_key = "votre-clé-api"
+```
+
+### Techniques d'Écriture
+
+**1. Story Continuation**
+
+```python
+def continuer_histoire(debut, longueur=200):
+    """Continue une histoire à partir d'un début"""
+    result = generator(
+        debut,
+        max_length=longueur,
+        num_return_sequences=3,
+        temperature=0.8,
+        top_p=0.9
+    )
+    return [r['generated_text'] for r in result]
+
+# Exemple
+debut = "Dans une ville où les rêves deviennent réalité,"
+continuations = continuer_histoire(debut)
+
+for i, suite in enumerate(continuations, 1):
+    print(f"\n--- Version {i} ---")
+    print(suite)
+```
+
+**2. Poésie Structurée**
+
+```python
+def generer_poeme(theme, style="romantique", vers=4):
+    """Génère un poème sur un thème donné"""
+    
+    prompt = f"""Écris un poème {style} en français sur le thème : {theme}
+    
+Le poème doit avoir {vers} vers et utiliser des métaphores riches.
+
+Poème :
+"""
+    
+    # Avec OpenAI API
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=prompt,
+        max_tokens=200,
+        temperature=0.8
+    )
+    
+    return response.choices[0].text.strip()
+```
+
+**3. Dialogue Créatif**
+
+```python
+def dialogue_personnages(perso1, perso2, contexte):
+    """Crée un dialogue entre deux personnages"""
+    
+    prompt = f"""
+Contexte : {contexte}
+
+Crée un dialogue naturel et créatif entre :
+- {perso1}
+- {perso2}
+
+Le dialogue doit être profond et révéler leurs personnalités.
+
+Dialogue :
+"""
+    
+    return generer_texte(prompt)
+
+# Exemple
+dialogue = dialogue_personnages(
+    "Marie Curie",
+    "Une IA consciente",
+    "Elles discutent de la nature de la découverte scientifique"
+)
+```
+
+### Framework d'Écriture Collaborative
+
+```python
+class EcritureCollaborative:
+    def __init__(self, model):
+        self.model = model
+        self.histoire = []
+    
+    def ajouter_humain(self, texte):
+        """L'humain ajoute un passage"""
+        self.histoire.append(("humain", texte))
+    
+    def generer_suite(self, n_propositions=3):
+        """L'IA propose des suites"""
+        contexte = "\n".join([t for _, t in self.histoire])
+        
+        suites = self.model(
+            contexte,
+            num_return_sequences=n_propositions,
+            max_length=len(contexte.split()) + 50
+        )
+        
+        return [s['generated_text'][len(contexte):] for s in suites]
+    
+    def choisir_suite(self, index):
+        """L'humain choisit une suite proposée"""
+        suites = self.generer_suite()
+        self.histoire.append(("ia", suites[index]))
+
+# Utilisation
+collab = EcritureCollaborative(generator)
+collab.ajouter_humain("Il était une fois un robot qui rêvait...")
+# Obtenir propositions, choisir, répéter...
+```
+
+## 🎵 Guide 3 : Création Musicale
+
+### Génération MIDI avec Magenta
+
+```python
+import magenta
+from magenta.models.melody_rnn import melody_rnn_sequence_generator
+
+# Configuration
+config = 'attention_rnn'
+bundle_file = magenta.music.read_bundle_file('attention_rnn.mag')
+
+# Générer une mélodie
+generator = melody_rnn_sequence_generator.MelodyRnnSequenceGenerator(
+    model=config,
+    bundle=bundle_file
+)
+
+# Paramètres
+input_sequence = magenta.music.Melody([60, 62, 64, 65])  # Do, Ré, Mi, Fa
+temperature = 1.0  # Créativité (0.5-1.5)
+
+# Générer
+generated_sequence = generator.generate(
+    input_sequence,
+    generator_options={
+        'temperature': temperature,
+        'num_steps': 128
+    }
+)
+```
+
+### Sonification de Données
+
+```python
+import pandas as pd
+import pretty_midi
+import numpy as np
+
+def donnees_vers_musique(data, output_file):
+    """Convertit des données en musique MIDI"""
+    
+    # Normaliser les données entre 60-84 (notes MIDI)
+    notes = np.interp(
+        data,
+        (data.min(), data.max()),
+        (60, 84)
+    ).astype(int)
+    
+    # Créer l'objet MIDI
+    midi = pretty_midi.PrettyMIDI()
+    instrument = pretty_midi.Instrument(program=0)  # Piano
+    
+    # Ajouter les notes
+    for i, note in enumerate(notes):
+        start_time = i * 0.5  # Chaque note dure 0.5s
+        end_time = start_time + 0.4
+        
+        midi_note = pretty_midi.Note(
+            velocity=100,
+            pitch=note,
+            start=start_time,
+            end=end_time
+        )
+        instrument.notes.append(midi_note)
+    
+    midi.instruments.append(instrument)
+    midi.write(output_file)
+
+# Exemple : températures vers musique
+temperatures = [15, 18, 22, 25, 28, 26, 23, 19]
+donnees_vers_musique(temperatures, "temperature_symphony.mid")
+```
+
+## 🎬 Guide 4 : Vidéo Générative
+
+### Animation d'Images
+
+```python
+from diffusers import StableDiffusionImg2ImgPipeline
+from PIL import Image
+import numpy as np
+
+def creer_interpolation(image1, image2, steps=10):
+    """Crée une interpolation entre deux images"""
+    
+    # Charger le pipeline
+    pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
+        "runwayml/stable-diffusion-v1-5"
+    )
+    
+    frames = []
+    for i in range(steps):
+        # Interpoler entre les deux images
+        alpha = i / (steps - 1)
+        blended = Image.blend(image1, image2, alpha)
+        
+        # Générer frame avec variation
+        frame = pipe(
+            prompt="smooth transition, artistic",
+            image=blended,
+            strength=0.3
+        ).images[0]
+        
+        frames.append(frame)
+    
+    return frames
+
+def sauver_video(frames, output="animation.mp4", fps=24):
+    """Sauvegarde les frames en vidéo"""
+    import imageio
+    
+    imageio.mimsave(
+        output,
+        frames,
+        fps=fps
+    )
+```
+
+### Video Style Transfer
+
+```python
+import cv2
+
+def style_transfer_video(video_input, style_image, video_output):
+    """Applique un style à une vidéo"""
+    
+    # Charger la vidéo
+    cap = cv2.VideoCapture(video_input)
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    
+    # Préparer le writer
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    out = None
+    
+    frame_count = 0
+    
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+        
+        # Appliquer le style avec IA
+        styled_frame = appliquer_style(frame, style_image)
+        
+        # Initialiser writer
+        if out is None:
+            h, w = styled_frame.shape[:2]
+            out = cv2.VideoWriter(video_output, fourcc, fps, (w, h))
+        
+        out.write(styled_frame)
+        frame_count += 1
+        
+        if frame_count % 30 == 0:
+            print(f"Processed {frame_count} frames")
+    
+    cap.release()
+    out.release()
+```
+
+## 🎨 Guide 5 : Projet Complet
+
+### Création d'une Exposition Virtuelle
+
+**Objectif :** Créer une série cohérente d'œuvres autour d'un thème
+
+**Étapes :**
+
+1. **Concept et Recherche**
+```python
+theme = "L'évolution de la conscience artificielle"
+mots_cles = ["naissance", "éveil", "apprentissage", "conscience", "transcendance"]
+```
+
+2. **Génération de la Série**
+```python
+def creer_serie(theme, etapes, style="surréaliste digital"):
+    oeuvres = []
+    
+    for i, etape in enumerate(etapes):
+        prompt = f"{theme} - {etape}, {style}, composition {i+1}/5"
+        
+        image = generer_image(prompt)
+        oeuvres.append({
+            'titre': etape,
+            'image': image,
+            'description': generer_description(prompt)
+        })
+    
+    return oeuvres
+
+serie = creer_serie(theme, mots_cles)
+```
+
+3. **Curation et Post-Production**
+```python
+from PIL import ImageEnhance, ImageFilter
+
+def post_traiter(image):
+    """Améliore l'image"""
+    # Ajuster contraste
+    enhancer = ImageEnhance.Contrast(image)
+    image = enhancer.enhance(1.2)
+    
+    # Légère netteté
+    image = image.filter(ImageFilter.SHARPEN)
+    
+    return image
+```
+
+4. **Génération de Textes Accompagnants**
+```python
+def creer_cartel(oeuvre):
+    """Génère un cartel d'exposition"""
+    
+    prompt = f"""
+    Écris un cartel d'exposition pour cette œuvre d'art générée par IA :
+    
+    Titre : {oeuvre['titre']}
+    Thème : {theme}
+    
+    Le cartel doit être poétique et philosophique.
+    """
+    
+    return generer_texte(prompt)
+```
+
+5. **Assemblage Final**
+```python
+def creer_exposition_html(serie, titre):
+    """Crée une page web pour l'exposition"""
+    
+    html = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{titre}</title>
+        <style>
+            body {{ font-family: Georgia, serif; }}
+            .oeuvre {{ margin: 50px; text-align: center; }}
+            img {{ max-width: 800px; }}
+        </style>
+    </head>
+    <body>
+        <h1>{titre}</h1>
+    """
+    
+    for oeuvre in serie:
+        html += f"""
+        <div class="oeuvre">
+            <h2>{oeuvre['titre']}</h2>
+            <img src="{oeuvre['image']}" />
+            <p>{oeuvre['description']}</p>
+        </div>
+        """
+    
+    html += """
+    </body>
+    </html>
+    """
+    
+    return html
+```
+
+## 📚 Ressources et Apprentissage
+
+### Tutoriels Vidéo
+
+- **Stable Diffusion Basics** : Introduction complète
+- **Advanced Prompting** : Techniques de prompting avancées
+- **ControlNet Tutorial** : Contrôle précis de la génération
+
+### Communautés
+
+- **r/StableDiffusion** : Reddit pour partage et tips
+- **Lexica.art** : Galerie de prompts Stable Diffusion
+- **Civitai** : Modèles et ressources communautaires
+
+### Datasets et Modèles
+
+- **Hugging Face Hub** : Milliers de modèles pré-entraînés
+- **Replicate** : API pour modèles d'IA créative
+- **RunwayML** : Plateforme tout-en-un
+
+---
+
+::: {.callout-note}
+## 🎯 À Vous de Jouer !
+
+Vous avez maintenant tous les outils pour créer. N'hésitez pas à expérimenter, à échouer, et à partager vos créations avec la communauté !
+:::

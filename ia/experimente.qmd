@@ -1,0 +1,545 @@
+---
+title: "Niveau Expérimenté"
+subtitle: "IA de Pointe, MLOps et Production"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 💎 Bienvenue au Niveau Expérimenté
+
+Vous maîtrisez le machine learning et le deep learning ? Explorez maintenant l'état de l'art : transformers, IA générative, MLOps, et déploiement en production.
+
+## 🤖 Module 1 : Architectures Avancées
+
+### Transformers et Attention
+
+Les transformers ont révolutionné le NLP et au-delà.
+
+```python
+from transformers import (
+    AutoTokenizer, AutoModel,
+    AutoModelForSequenceClassification,
+    Trainer, TrainingArguments
+)
+
+# Charger un modèle pré-entraîné
+model_name = "camembert-base"  # Modèle français
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(
+    model_name,
+    num_labels=2
+)
+
+# Tokenisation
+inputs = tokenizer(
+    "Votre texte ici",
+    padding=True,
+    truncation=True,
+    return_tensors="pt"
+)
+
+# Prédiction
+outputs = model(**inputs)
+predictions = outputs.logits.argmax(dim=-1)
+```
+
+### Fine-tuning de Modèles Pré-entraînés
+
+```python
+from transformers import TrainingArguments, Trainer
+
+# Configuration de l'entraînement
+training_args = TrainingArguments(
+    output_dir="./results",
+    num_train_epochs=3,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=64,
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_dir='./logs',
+    evaluation_strategy="epoch",
+    save_strategy="epoch",
+    load_best_model_at_end=True
+)
+
+# Créer le trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    tokenizer=tokenizer
+)
+
+# Entraîner
+trainer.train()
+```
+
+### Vision Transformers (ViT)
+
+Transformers appliqués à la vision par ordinateur.
+
+```python
+from transformers import ViTForImageClassification, ViTImageProcessor
+
+# Charger le modèle
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
+model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+
+# Préparer l'image
+inputs = processor(images=image, return_tensors="pt")
+
+# Prédiction
+outputs = model(**inputs)
+logits = outputs.logits
+predicted_class = logits.argmax(-1).item()
+```
+
+## 🎨 Module 2 : IA Générative
+
+### Diffusion Models
+
+```python
+from diffusers import StableDiffusionPipeline
+import torch
+
+# Charger Stable Diffusion
+pipe = StableDiffusionPipeline.from_pretrained(
+    "runwayml/stable-diffusion-v1-5",
+    torch_dtype=torch.float16
+)
+pipe = pipe.to("cuda")
+
+# Générer une image
+prompt = "A beautiful landscape with mountains and a lake"
+image = pipe(prompt, num_inference_steps=50).images[0]
+image.save("generated_image.png")
+```
+
+### Large Language Models (LLM)
+
+```python
+from transformers import pipeline
+
+# Génération de texte
+generator = pipeline('text-generation', model='gpt2-large')
+generated = generator(
+    "L'intelligence artificielle va",
+    max_length=100,
+    num_return_sequences=3,
+    temperature=0.8
+)
+
+for i, text in enumerate(generated):
+    print(f"Version {i+1}: {text['generated_text']}")
+```
+
+### Retrieval-Augmented Generation (RAG)
+
+```python
+from langchain.vectorstores import FAISS
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.chains import RetrievalQA
+from langchain.llms import HuggingFacePipeline
+
+# Créer une base de connaissances vectorielle
+embeddings = HuggingFaceEmbeddings()
+vectorstore = FAISS.from_texts(documents, embeddings)
+
+# Créer le système RAG
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    chain_type="stuff",
+    retriever=vectorstore.as_retriever(),
+    return_source_documents=True
+)
+
+# Poser une question
+result = qa_chain({"query": "Qu'est-ce que l'IA générative ?"})
+```
+
+## 🔧 Module 3 : MLOps et Production
+
+### Tracking d'Expériences
+
+```python
+import mlflow
+import mlflow.sklearn
+
+# Démarrer MLflow
+mlflow.set_experiment("my_experiment")
+
+with mlflow.start_run():
+    # Logger les paramètres
+    mlflow.log_param("n_estimators", 100)
+    mlflow.log_param("max_depth", 10)
+    
+    # Entraîner le modèle
+    model = RandomForestClassifier(n_estimators=100, max_depth=10)
+    model.fit(X_train, y_train)
+    
+    # Logger les métriques
+    accuracy = model.score(X_test, y_test)
+    mlflow.log_metric("accuracy", accuracy)
+    
+    # Logger le modèle
+    mlflow.sklearn.log_model(model, "model")
+```
+
+### Containerisation avec Docker
+
+```dockerfile
+# Dockerfile pour une API ML
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### API REST avec FastAPI
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+import joblib
+import numpy as np
+
+app = FastAPI()
+
+# Charger le modèle
+model = joblib.load('model.pkl')
+
+class PredictionInput(BaseModel):
+    features: list[float]
+
+class PredictionOutput(BaseModel):
+    prediction: float
+    probability: float
+
+@app.post("/predict", response_model=PredictionOutput)
+async def predict(input_data: PredictionInput):
+    # Préparer les données
+    X = np.array(input_data.features).reshape(1, -1)
+    
+    # Prédiction
+    prediction = model.predict(X)[0]
+    probability = model.predict_proba(X)[0].max()
+    
+    return PredictionOutput(
+        prediction=float(prediction),
+        probability=float(probability)
+    )
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}
+```
+
+### CI/CD pour ML
+
+```yaml
+# .github/workflows/ml-pipeline.yml
+name: ML Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Train model
+        run: python train.py
+      
+      - name: Test model
+        run: python test.py
+      
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: trained-model
+          path: model.pkl
+```
+
+## 📊 Module 4 : Monitoring et Observabilité
+
+### Détection de Data Drift
+
+```python
+from evidently.report import Report
+from evidently.metric_preset import DataDriftPreset
+import pandas as pd
+
+# Comparer données d'entraînement et production
+reference_data = pd.read_csv('train_data.csv')
+current_data = pd.read_csv('production_data.csv')
+
+# Créer le rapport
+report = Report(metrics=[
+    DataDriftPreset()
+])
+
+report.run(
+    reference_data=reference_data,
+    current_data=current_data
+)
+
+report.save_html('drift_report.html')
+```
+
+### Monitoring des Performances
+
+```python
+from prometheus_client import Counter, Histogram, start_http_server
+import time
+
+# Métriques Prometheus
+prediction_counter = Counter('predictions_total', 'Total predictions made')
+prediction_duration = Histogram('prediction_duration_seconds', 'Prediction duration')
+
+@prediction_duration.time()
+def make_prediction(data):
+    prediction = model.predict(data)
+    prediction_counter.inc()
+    return prediction
+
+# Démarrer le serveur de métriques
+start_http_server(8001)
+```
+
+## 🧪 Module 5 : Techniques Avancées
+
+### Federated Learning
+
+Apprentissage distribué préservant la confidentialité.
+
+```python
+import syft as sy
+import torch
+
+# Configuration Federated Learning
+hook = sy.TorchHook(torch)
+alice = sy.VirtualWorker(hook, id="alice")
+bob = sy.VirtualWorker(hook, id="bob")
+
+# Distribuer les données
+data_alice = data[:len(data)//2].send(alice)
+data_bob = data[len(data)//2:].send(bob)
+
+# Entraînement fédéré
+for epoch in range(epochs):
+    for worker_data in [data_alice, data_bob]:
+        model.send(worker_data.location)
+        # Entraîner localement
+        loss = train_step(model, worker_data)
+        model.get()
+```
+
+### AutoML
+
+```python
+from autogluon.tabular import TabularPredictor
+
+# AutoML avec AutoGluon
+predictor = TabularPredictor(
+    label='target',
+    eval_metric='roc_auc',
+    problem_type='binary'
+)
+
+# Entraînement automatique
+predictor.fit(
+    train_data,
+    time_limit=3600,  # 1 heure
+    presets='best_quality'
+)
+
+# Prédictions
+predictions = predictor.predict(test_data)
+leaderboard = predictor.leaderboard()
+```
+
+### Neural Architecture Search (NAS)
+
+```python
+import keras_tuner as kt
+
+def build_model(hp):
+    model = keras.Sequential()
+    
+    # Optimiser le nombre de couches
+    for i in range(hp.Int('num_layers', 1, 5)):
+        model.add(layers.Dense(
+            units=hp.Int(f'units_{i}', 32, 512, step=32),
+            activation='relu'
+        ))
+        
+        if hp.Boolean(f'dropout_{i}'):
+            model.add(layers.Dropout(hp.Float(f'dropout_rate_{i}', 0.1, 0.5)))
+    
+    model.add(layers.Dense(num_classes, activation='softmax'))
+    
+    # Optimiser le learning rate
+    model.compile(
+        optimizer=keras.optimizers.Adam(hp.Float('learning_rate', 1e-4, 1e-2, sampling='log')),
+        loss='categorical_crossentropy',
+        metrics=['accuracy']
+    )
+    
+    return model
+
+# Recherche d'architecture
+tuner = kt.Hyperband(
+    build_model,
+    objective='val_accuracy',
+    max_epochs=50,
+    directory='nas_results',
+    project_name='architecture_search'
+)
+
+tuner.search(X_train, y_train, epochs=50, validation_split=0.2)
+```
+
+## 🛡️ Module 6 : IA Responsable
+
+### Détection de Biais
+
+```python
+from aif360.datasets import BinaryLabelDataset
+from aif360.metrics import BinaryLabelDatasetMetric
+from aif360.algorithms.preprocessing import Reweighing
+
+# Créer le dataset
+dataset = BinaryLabelDataset(
+    df=data,
+    label_names=['outcome'],
+    protected_attribute_names=['gender', 'race']
+)
+
+# Mesurer les biais
+metric = BinaryLabelDatasetMetric(
+    dataset,
+    unprivileged_groups=[{'gender': 0}],
+    privileged_groups=[{'gender': 1}]
+)
+
+print(f"Disparate Impact: {metric.disparate_impact()}")
+print(f"Statistical Parity: {metric.statistical_parity_difference()}")
+
+# Mitigation des biais
+rw = Reweighing(
+    unprivileged_groups=[{'gender': 0}],
+    privileged_groups=[{'gender': 1}]
+)
+dataset_transf = rw.fit_transform(dataset)
+```
+
+### Explainability
+
+```python
+from lime import lime_tabular
+from alibi.explainers import AnchorTabular
+
+# LIME
+explainer = lime_tabular.LimeTabularExplainer(
+    X_train,
+    feature_names=feature_names,
+    class_names=['Class 0', 'Class 1'],
+    mode='classification'
+)
+
+explanation = explainer.explain_instance(
+    X_test[0],
+    model.predict_proba,
+    num_features=10
+)
+
+# Anchor Explanations
+anchor_explainer = AnchorTabular(
+    predictor=model.predict,
+    feature_names=feature_names
+)
+
+explanation = anchor_explainer.explain(X_test[0])
+```
+
+## 🚀 Projets de Pointe
+
+### Projet 1 : Chatbot Conversationnel
+
+Créer un assistant IA avec RAG et LLM.
+
+**Compétences** : Transformers, RAG, FastAPI, Docker
+
+### Projet 2 : Système de Recommandation
+
+Système de recommandation à grande échelle.
+
+**Compétences** : Deep learning, embeddings, MLOps, monitoring
+
+### Projet 3 : Pipeline ML Complet
+
+Pipeline end-to-end avec MLOps.
+
+**Compétences** : CI/CD, monitoring, containerisation, API
+
+## 📚 Ressources de Pointe
+
+### Conférences et Publications
+
+- **NeurIPS** : Conférence principale en ML
+- **ICML** : International Conference on Machine Learning
+- **CVPR** : Computer Vision
+- **ACL** : Natural Language Processing
+- **arXiv.org** : Prépublications de recherche
+
+### Communautés
+
+- **Papers with Code** : Reproduire les dernières recherches
+- **Hugging Face Hub** : Modèles et datasets
+- **Kaggle** : Compétitions et collaboration
+
+## ✅ Expertise Confirmée
+
+Vous maîtrisez le niveau expérimenté si vous pouvez :
+
+- [ ] Fine-tuner des transformers pour vos tâches
+- [ ] Déployer des modèles en production avec MLOps
+- [ ] Implémenter des pipelines CI/CD pour ML
+- [ ] Monitorer et maintenir des modèles en production
+- [ ] Détecter et corriger les biais dans vos modèles
+- [ ] Appliquer les principes d'IA responsable
+- [ ] Suivre et implémenter les dernières recherches
+- [ ] Gérer des projets ML de bout en bout
+
+---
+
+::: {.callout-note}
+## 🎓 Félicitations !
+Vous avez atteint le niveau expert en IA. Continuez à explorer, expérimenter et contribuer à la communauté !
+:::

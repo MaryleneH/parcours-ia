@@ -1,0 +1,348 @@
+---
+title: "Cadrage de Projet IA"
+subtitle: "Définir correctement le problème pour partir sur de bonnes bases"
+date: last-modified
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## 🎯 Pourquoi le Cadrage est Crucial
+
+Un mauvais cadrage est la première cause d'échec des projets IA. Cette phase permet de :
+
+- **Clarifier les objectifs** métier et techniques
+- **Évaluer la faisabilité** avant d'investir massivement
+- **Aligner les parties prenantes** sur une vision commune
+- **Définir le périmètre** et éviter le scope creep
+
+::: {.callout-note}
+## Règle d'Or
+"Un problème bien défini est à moitié résolu" - Charles Kettering
+:::
+
+## 🔍 Étape 1 : Identifier le Cas d'Usage
+
+### Questions Fondamentales
+
+Avant de démarrer, répondez à ces questions :
+
+1. **Quel problème métier cherchons-nous à résoudre ?**
+2. **Pourquoi l'IA est-elle nécessaire ?** (vs. règles métier simples)
+3. **Quel est l'impact attendu ?** (ROI, gains de productivité, etc.)
+4. **Qui sont les utilisateurs finaux ?**
+5. **Comment mesurons-nous le succès ?**
+
+### Canvas de Cas d'Usage
+
+Utilisez ce canvas pour structurer votre réflexion :
+
+| Dimension | Description |
+|-----------|-------------|
+| **Problème** | Quel problème résolvons-nous ? |
+| **Solution** | Comment l'IA peut-elle aider ? |
+| **Utilisateurs** | Qui va utiliser la solution ? |
+| **Données** | Quelles données sont disponibles ? |
+| **Impact** | Quelle valeur métier est créée ? |
+| **Contraintes** | Quelles sont les limites ? |
+
+### Exemples de Cas d'Usage
+
+::: {.card}
+**Prédiction de Churn**
+
+- **Problème** : Perte de clients sans anticipation
+- **Solution IA** : Modèle prédictif du risque de départ
+- **Impact** : Réduction de 20% du taux de churn
+:::
+
+::: {.card}
+**Classification de Documents**
+
+- **Problème** : Tri manuel de milliers de documents
+- **Solution IA** : Classification automatique par catégorie
+- **Impact** : 80% de gain de temps
+:::
+
+::: {.card}
+**Détection de Fraude**
+
+- **Problème** : Fraudes coûteuses non détectées
+- **Solution IA** : Détection en temps réel des anomalies
+- **Impact** : Économies de millions d'euros
+:::
+
+## 📊 Étape 2 : Évaluation de la Faisabilité
+
+### Critères de Faisabilité Technique
+
+Évaluez chaque dimension sur une échelle de 1 à 5 :
+
+**Disponibilité des Données** (🔴 1-5 🟢)
+
+- [ ] Les données existent-elles ?
+- [ ] Sont-elles accessibles ?
+- [ ] En quantité suffisante ? (>1000 exemples minimum)
+- [ ] De qualité acceptable ? (<30% de valeurs manquantes)
+
+**Complexité du Problème** (🟢 1-5 🔴)
+
+- [ ] Problème bien défini ?
+- [ ] État de l'art mature ?
+- [ ] Baseline existante ?
+- [ ] Ressources compute disponibles ?
+
+**Expertise Disponible** (🔴 1-5 🟢)
+
+- [ ] Équipe compétente en IA ?
+- [ ] Expertise métier disponible ?
+- [ ] Support management assuré ?
+
+### Matrice Faisabilité / Impact
+
+```
+        Impact Métier
+           ↑
+    Faible │ Éviter  │ Prioriser
+           │─────────│─────────
+           │ Facile  │ Quick Win
+           └──────────────────→
+              Faisabilité Tech
+```
+
+**Quick Wins** : À faire en priorité  
+**Prioriser** : Fort potentiel, nécessite investissement  
+**Facile** : Faible valeur, peut attendre  
+**Éviter** : Difficile et peu de valeur
+
+## 📋 Étape 3 : Définir le Périmètre
+
+### Scope du Projet
+
+Délimitez clairement ce qui est IN et OUT du scope :
+
+**Dans le Scope (IN)**
+
+- Fonctionnalités principales (MVP)
+- Périmètre de données initial
+- Algorithmes à tester
+- Environnement de déploiement cible
+
+**Hors Scope (OUT)**
+
+- Fonctionnalités avancées (V2+)
+- Sources de données futures
+- Optimisations complexes
+- Intégrations tierces
+
+### Minimum Viable Product (MVP)
+
+Définissez la version la plus simple qui apporte de la valeur :
+
+::: {.card}
+**MVP Classique**
+
+✅ **Inclure :**
+- Une fonctionnalité principale
+- Données facilement accessibles
+- Modèle baseline simple
+- Interface basique
+- Métriques de succès essentielles
+
+❌ **Exclure :**
+- Fonctionnalités secondaires
+- Optimisations prématurées
+- Interface sophistiquée
+- Intégrations complexes
+:::
+
+## 🎯 Étape 4 : Objectifs et Métriques
+
+### Définir des Objectifs SMART
+
+Les objectifs doivent être **SMART** :
+
+- **S**pécifique : Clair et précis
+- **M**esurable : Quantifiable
+- **A**tteignable : Réaliste
+- **R**elevant : Aligné avec les enjeux métier
+- **T**emporel : Date limite définie
+
+**Exemple d'Objectif SMART :**
+
+> "Atteindre une précision de 85% dans la prédiction du churn client d'ici 3 mois, avec un test sur 10 000 clients."
+
+### Métriques de Succès
+
+Définissez des métriques à deux niveaux :
+
+**Métriques Techniques**
+
+| Tâche | Métriques Principales |
+|-------|----------------------|
+| Classification | Accuracy, F1-Score, AUC-ROC |
+| Régression | RMSE, MAE, R² |
+| Clustering | Silhouette Score, Davies-Bouldin |
+| NLP | BLEU, ROUGE, Perplexité |
+
+**Métriques Métier**
+
+- ROI : Retour sur investissement
+- Gains de productivité (% ou temps)
+- Réduction des coûts
+- Satisfaction utilisateur (NPS, CSAT)
+- Taux d'adoption
+
+### Baseline et Objectifs Cibles
+
+Établissez des paliers progressifs :
+
+```
+Baseline (État actuel)
+    ↓
+Objectif Minimum (MVP)
+    ↓
+Objectif Cible (V1)
+    ↓
+Objectif Aspirationnel (État de l'art)
+```
+
+**Exemple :**
+
+- **Baseline** : 60% accuracy (règles métier manuelles)
+- **Minimum** : 75% accuracy (MVP acceptable)
+- **Cible** : 85% accuracy (V1 production)
+- **Aspirationnel** : 92% accuracy (état de l'art)
+
+## 📅 Étape 5 : Planning et Ressources
+
+### Phase de Cadrage (2-4 semaines)
+
+**Semaine 1-2 : Discovery**
+
+- Interviews parties prenantes
+- Analyse exploratoire des données (EDA)
+- Revue de littérature / benchmark
+- Identification des risques
+
+**Semaine 3-4 : Validation**
+
+- POC rapide (Proof of Concept)
+- Validation de la faisabilité technique
+- Estimation des ressources
+- Go/No-Go décision
+
+### Ressources Nécessaires
+
+**Équipe Minimale**
+
+- 1 Product Owner (50%)
+- 1-2 Data Scientists (100%)
+- 1 Data Engineer (50%)
+- 1 Expert Métier (20%)
+
+**Infrastructure**
+
+- Environnement de développement
+- Accès aux données
+- Outils de collaboration
+- Compute pour entraînement
+
+**Budget**
+
+- Ressources humaines
+- Infrastructure cloud
+- Licences logicielles
+- Formation si nécessaire
+
+## 🚨 Étape 6 : Identification des Risques
+
+### Risques Typiques des Projets IA
+
+| Risque | Impact | Mitigation |
+|--------|--------|------------|
+| **Données insuffisantes** | Élevé | Valider taille dataset dès POC |
+| **Qualité des données** | Élevé | EDA approfondie en phase 1 |
+| **Biais dans les données** | Moyen | Audit fairness régulier |
+| **Performances insuffisantes** | Élevé | Définir objectif minimum réaliste |
+| **Dérive des modèles** | Moyen | Plan de monitoring post-prod |
+| **Résistance au changement** | Moyen | Change management early |
+| **Compétences manquantes** | Élevé | Formation ou recrutement |
+
+### Plan de Mitigation
+
+Pour chaque risque majeur :
+
+1. **Identifier** les signaux d'alerte
+2. **Définir** des actions préventives
+3. **Préparer** des plans de contingence
+4. **Assigner** des responsables
+5. **Suivre** l'évolution dans le temps
+
+## ✅ Checklist de Cadrage
+
+Avant de passer à l'exécution, validez :
+
+### Alignement Métier
+
+- [ ] Cas d'usage clairement défini
+- [ ] Objectifs métier quantifiés
+- [ ] Parties prenantes alignées
+- [ ] ROI estimé validé
+- [ ] Sponsors identifiés
+
+### Faisabilité Technique
+
+- [ ] Données disponibles et accessibles
+- [ ] Qualité des données acceptable
+- [ ] POC réalisé avec succès
+- [ ] Baseline définie
+- [ ] Compétences techniques présentes
+
+### Scope et Planning
+
+- [ ] MVP défini
+- [ ] Périmètre IN/OUT clair
+- [ ] Planning réaliste
+- [ ] Ressources allouées
+- [ ] Budget validé
+
+### Risques et Gouvernance
+
+- [ ] Risques majeurs identifiés
+- [ ] Plans de mitigation définis
+- [ ] Comité de pilotage constitué
+- [ ] Processus de décision clair
+- [ ] Aspects éthiques considérés
+
+## 📄 Livrables du Cadrage
+
+### Document de Cadrage
+
+Produisez un document synthétique (10-20 pages) contenant :
+
+1. **Executive Summary**
+2. **Cas d'Usage et Problème Métier**
+3. **Analyse de Faisabilité**
+4. **Scope et MVP**
+5. **Objectifs et Métriques**
+6. **Planning et Ressources**
+7. **Risques et Mitigation**
+8. **Recommandation Go/No-Go**
+
+### Comité de Pilotage
+
+Présentez les résultats du cadrage à un comité décisionnel :
+
+- **Durée** : 1-2 heures
+- **Participants** : Sponsors, stakeholders, équipe
+- **Objectif** : Obtenir le Go/No-Go pour la phase suivante
+- **Livrables** : Présentation + document de cadrage
+
+---
+
+::: {.callout-note}
+## 🎯 Prochaine Étape
+Une fois le cadrage validé, passez à la mise en place de la [Gouvernance](gouvernance.qmd) du projet.
+:::

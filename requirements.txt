@@ -1,0 +1,20 @@
+# Python dependencies for Quarto website execution
+# These are needed to run the Python code examples
+
+# Core data science libraries
+jupyter>=1.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+
+# Optional but useful
+ipykernel>=6.25.0
+
+# For Quarto caching
+jupyter-cache>=0.6.0

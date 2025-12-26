@@ -1,0 +1,113 @@
+---
+title: "Hub Parcours IA"
+subtitle: "Choisissez votre niveau et commencez votre apprentissage"
+date: last-modified
+format:
+  html:
+    toc: true
+---
+
+## 🎓 Votre Parcours d'Apprentissage en IA
+
+Bienvenue sur le hub des parcours d'apprentissage en Intelligence Artificielle. Notre approche pédagogique est structurée en trois niveaux progressifs pour vous accompagner de vos premiers pas jusqu'à l'expertise avancée.
+
+### 📊 Évaluez Votre Niveau
+
+Avant de commencer, prenez un moment pour évaluer vos connaissances actuelles :
+
+::: {.card}
+#### 🌱 Débutant
+**Vous êtes débutant si :**
+
+- Vous découvrez le machine learning et l'IA
+- Vous avez peu ou pas d'expérience en programmation Python/R
+- Vous cherchez à comprendre les concepts fondamentaux
+- Vous souhaitez débuter avec des projets simples
+
+👉 [Commencer le parcours débutant](debutant.qmd)
+:::
+
+::: {.card}
+#### 🚀 Intermédiaire
+**Vous êtes intermédiaire si :**
+
+- Vous maîtrisez les bases du machine learning
+- Vous êtes à l'aise avec Python ou R
+- Vous avez déjà réalisé quelques projets de data science
+- Vous cherchez à approfondir vos connaissances
+
+👉 [Accéder au parcours intermédiaire](intermediaire.qmd)
+:::
+
+::: {.card}
+#### 💎 Expérimenté
+**Vous êtes expérimenté si :**
+
+- Vous maîtrisez les algorithmes de machine learning classiques
+- Vous avez de l'expérience en deep learning
+- Vous cherchez à explorer l'état de l'art
+- Vous visez l'expertise en MLOps et IA en production
+
+👉 [Explorer le parcours expérimenté](experimente.qmd)
+:::
+
+## 🎯 Compétences Développées
+
+Au fil de votre parcours, vous développerez des compétences clés :
+
+### Compétences Techniques
+
+- **Programmation** : Python, R, bibliothèques essentielles
+- **Mathématiques** : Statistiques, algèbre linéaire, optimisation
+- **Algorithmes** : Machine learning, deep learning, IA générative
+- **Outils** : Jupyter, Git, environnements de développement
+
+### Compétences Méthodologiques
+
+- **Data Science** : Exploration, nettoyage, feature engineering
+- **Modélisation** : Choix d'algorithmes, hyperparamètres, validation
+- **Évaluation** : Métriques, interprétabilité, diagnostic
+- **Déploiement** : MLOps, APIs, monitoring en production
+
+### Compétences Transversales
+
+- **Gestion de projet** : Méthodologies agiles pour l'IA
+- **Communication** : Présentation de résultats, storytelling avec les données
+- **Éthique** : IA responsable, biais, confidentialité
+- **Veille** : Suivre l'évolution rapide du domaine
+
+## 📚 Ressources Complémentaires
+
+### Outils de Pratique
+
+- **Datasets** : Collections de données pour l'apprentissage
+- **Notebooks** : Exemples de code commentés et exécutables
+- **Projets guidés** : Cas d'usage réels à reproduire
+- **Challenges** : Exercices pour tester vos compétences
+
+### Communauté et Support
+
+- **Forums de discussion** : Échangez avec d'autres apprenants
+- **Sessions Q&A** : Posez vos questions
+- **Projets collaboratifs** : Travaillez en équipe
+- **Mentorat** : Bénéficiez de l'expérience de praticiens
+
+## 🚀 Commencer Maintenant
+
+1. **Choisissez votre niveau** en fonction de votre évaluation
+2. **Suivez le parcours séquentiellement** pour une progression optimale
+3. **Pratiquez régulièrement** avec nos exemples de code
+4. **Construisez vos projets** pour consolider vos acquis
+
+---
+
+::: {.callout-note}
+## 💡 Conseil
+N'hésitez pas à revenir sur des concepts du niveau précédent si nécessaire. L'apprentissage de l'IA est itératif !
+:::
+
+## 🔗 Prochaines Étapes
+
+- Explorez les [exemples Python](../examples/python-example.qmd) et [R](../examples/r-example.qmd)
+- Découvrez comment gérer vos projets IA avec [PM/Scrum](../pm-scrum/index.qmd)
+- Rejoignez la section [New Romance](../new-romance/index.qmd) pour des explorations créatives
