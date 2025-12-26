@@ -14,7 +14,7 @@ Bienvenue sur **Parcours IA**, une plateforme dédiée aux professionnels des do
 
 ### 📚 Nos Parcours d'Apprentissage
 
-::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;"}
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
 
 ::: {.card}
 #### 🌱 [Niveau Débutant](ia/debutant.qmd)
@@ -35,7 +35,7 @@ IA générative, MLOps et innovations
 
 ### 🎓 Explorez Nos Ressources
 
-::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;"}
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
 
 ::: {.content-block}
 #### 📊 [PM/Scrum](pm-scrum/index.qmd)
@@ -47,7 +47,7 @@ Méthodologies agiles pour projets IA
 Tutoriels Python et R exécutables
 :::
 
-::: {.new-romance-section}
+::: {.content-block .new-romance-section}
 #### 💕 [New Romance](new-romance/index.qmd)
 Exploration créative de l'IA
 :::
