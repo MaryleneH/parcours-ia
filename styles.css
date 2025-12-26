@@ -280,6 +280,67 @@ a:hover::after {
 }
 
 /* ============================================================================
+   HOMEPAGE SPECIFIC STYLES
+   Enhanced visual hierarchy for learning progression
+   ============================================================================ */
+
+/* Hero section - Centered introduction */
+.hero-section {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* Learning path intro box - Emphasizes progression concept */
+.learning-path-intro {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+/* Level cards - Special styling to emphasize progression */
+.level-card {
+  position: relative;
+  border: 2px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.level-card::after {
+  content: '→';
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--pink-primary);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.level-card:hover {
+  border-color: var(--pink-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.level-card:hover::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Progressive numbering visual cue */
+.level-card:nth-child(1) {
+  border-left: 4px solid var(--pink-light);
+}
+
+.level-card:nth-child(2) {
+  border-left: 4px solid var(--pink-primary);
+}
+
+.level-card:nth-child(3) {
+  border-left: 4px solid var(--pink-dark);
+}
+
+/* ============================================================================
    GRID LAYOUT OPTIMIZATION
    Ensures consistent card heights and proper alignment across all grid items
    FIX: Added margin-bottom: 0 to prevent layout issues in grid
