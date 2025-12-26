@@ -3,7 +3,7 @@ project:
   output-dir: _site
 
 website:
-  title: "Parcours IA"
+  title: logo.svg
   site-url: "https://maryleneh.github.io/parcours-ia"
   description: "Formations et ressources IA pour professionnels data (statistiques & économie)"
   
@@ -11,8 +11,7 @@ website:
     background: primary
     search: true
     left:
-      - text: "Accueil"
-        href: index.qmd
+      - text: "  "
       - text: "Parcours IA"
         menu:
           - text: "Hub IA"
