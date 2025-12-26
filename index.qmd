@@ -12,8 +12,10 @@ format:
 
 Bienvenue sur **Parcours IA**, une plateforme dédiée aux professionnels des données (statisticiens, économistes, data scientists) souhaitant approfondir leurs compétences en Intelligence Artificielle.
 
+<!-- Grid layout for learning paths - 3 columns on desktop, responsive on smaller screens -->
 ### 📚 Nos Parcours d'Apprentissage
 
+<!-- Increased bottom margin (3rem) for better visual separation between sections -->
 ::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
 
 ::: {.card}
@@ -33,6 +35,7 @@ IA générative, MLOps et innovations
 
 :::
 
+<!-- Grid layout for resources - 3 columns on desktop, responsive on smaller screens -->
 ### 🎓 Explorez Nos Ressources
 
 ::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
@@ -47,6 +50,9 @@ Méthodologies agiles pour projets IA
 Tutoriels Python et R exécutables
 :::
 
+<!-- New Romance section: Uses both .content-block and .new-romance-section classes
+     - .content-block ensures consistent alignment and height with other cards
+     - .new-romance-section adds special romantic gradient background and decorative heart icon -->
 ::: {.content-block .new-romance-section}
 #### 💕 [New Romance](new-romance/index.qmd)
 Exploration créative de l'IA

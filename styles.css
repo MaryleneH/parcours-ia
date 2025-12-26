@@ -1,5 +1,10 @@
 /*-- scss:defaults --*/
 
+/* ============================================================================
+   HERMÈS-INSPIRED COLOR SCHEME
+   Elegant Gray-Pink Tones for a sophisticated, modern aesthetic
+   ============================================================================ */
+
 /* Hermès-Inspired Color Scheme - Elegant Gray-Pink Tones */
 :root {
   /* Primary Colors - Muted gray-pink palette */
@@ -52,6 +57,11 @@
 }
 
 /*-- scss:rules --*/
+
+/* ============================================================================
+   MAIN STYLES - HOMEPAGE DESIGN
+   Optimized for visual consistency, accessibility, and responsiveness
+   ============================================================================ */
 
 /* Body and main elements */
 body {
@@ -208,6 +218,12 @@ a:hover::after {
   width: 100%;
 }
 
+/* ============================================================================
+   CARDS AND CONTENT BLOCKS
+   Core component styling with consistent heights for grid alignment
+   FIX: Added height: 100% to ensure equal heights in grid layouts
+   ============================================================================ */
+
 /* Cards and content blocks - Refined elegance with consistent heights */
 .card,
 .content-block {
@@ -262,6 +278,12 @@ a:hover::after {
   position: relative;
   z-index: 1;
 }
+
+/* ============================================================================
+   GRID LAYOUT OPTIMIZATION
+   Ensures consistent card heights and proper alignment across all grid items
+   FIX: Added margin-bottom: 0 to prevent layout issues in grid
+   ============================================================================ */
 
 /* Equal height for grid items on homepage - Ensures visual consistency */
 [style*="grid-template-columns: repeat(3, 1fr)"] {
@@ -479,6 +501,15 @@ table tbody tr:hover {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
+/* ============================================================================
+   NEW ROMANCE SECTION STYLING
+   Special romantic aesthetic while maintaining alignment with other cards
+   FIX: Changed to use both .content-block and .new-romance-section classes
+        - Inherits base .content-block styles for consistent alignment
+        - Overrides background with romantic gradient
+        - Adds decorative heart icon with subtle pulse animation
+   ============================================================================ */
+
 /* New Romance specific styles - Softer romantic feel with enhanced visual effects */
 .new-romance-section {
   /* Override background for New Romance card with romantic gradient */
@@ -539,6 +570,11 @@ table tbody tr:hover {
   color: var(--pink-dark);
   font-family: 'Georgia', 'Times New Roman', serif;
 }
+
+/* ============================================================================
+   BLOCKQUOTES AND CALLOUTS
+   Enhanced readability with modern styling
+   ============================================================================ */
 
 /* Blockquotes - Elegant, modern style */
 blockquote {
@@ -614,6 +650,14 @@ blockquote:hover {
   align-items: center;
   gap: 0.5rem;
 }
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   Mobile-first approach with breakpoints for tablet and desktop
+   - Mobile (<768px): Single column layout
+   - Tablet (769px-1024px): Two column layout with third item spanning full width
+   - Desktop (>1024px): Three column layout
+   ============================================================================ */
 
 /* Responsive adjustments - Maintaining elegant design on all devices */
 
