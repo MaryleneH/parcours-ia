@@ -1,41 +1,54 @@
 ---
 title: "Bienvenue sur Parcours IA"
 subtitle: "Votre guide complet pour maîtriser l'Intelligence Artificielle"
-author: "Parcours IA"
-date: last-modified
 format:
   html:
     toc: false
 ---
 
-## 🎯 Votre Parcours d'Apprentissage en IA
-
+::: {.hero-section style="text-align: center; padding: 2rem 0 3rem 0;"}
 Bienvenue sur **Parcours IA**, une plateforme dédiée aux professionnels des données (statisticiens, économistes, data scientists) souhaitant approfondir leurs compétences en Intelligence Artificielle.
+:::
 
-### 📚 Nos Parcours d'Apprentissage
+## 🎯 Votre Parcours d'Apprentissage
 
-::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;"}
+::: {.learning-path-intro style="margin-bottom: 2rem; padding: 1.5rem; background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--bg-secondary) 100%); border-radius: 12px; border-left: 4px solid var(--pink-primary);"}
+**Progressez à votre rythme** à travers trois niveaux conçus pour vous accompagner de l'initiation à l'expertise en Intelligence Artificielle.
+:::
 
-::: {.card}
+<!-- Grid layout for learning paths - 3 columns on desktop, responsive on smaller screens -->
+### 📚 Choisissez Votre Niveau
+
+<!-- Increased bottom margin (3rem) for better visual separation between sections -->
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
+
+::: {.card .level-card}
 #### 🌱 [Niveau Débutant](ia/debutant.qmd)
-Fondamentaux de l'IA et machine learning
+**Fondamentaux de l'IA et machine learning**
+
+Commencez ici votre voyage dans l'IA
 :::
 
-::: {.card}
+::: {.card .level-card}
 #### 🚀 [Niveau Intermédiaire](ia/intermediaire.qmd)
-Algorithmes avancés et deep learning
+**Algorithmes avancés et deep learning**
+
+Approfondissez vos connaissances
 :::
 
-::: {.card}
+::: {.card .level-card}
 #### 💎 [Niveau Expérimenté](ia/experimente.qmd)
-IA générative, MLOps et innovations
+**IA générative, MLOps et innovations**
+
+Maîtrisez les technologies de pointe
 :::
 
 :::
 
-### 🎓 Explorez Nos Ressources
+<!-- Grid layout for resources - 3 columns on desktop, responsive on smaller screens -->
+### 🎓 Ressources Complémentaires
 
-::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0;"}
+::: {style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0 3rem 0;"}
 
 ::: {.content-block}
 #### 📊 [PM/Scrum](pm-scrum/index.qmd)
@@ -47,9 +60,14 @@ Méthodologies agiles pour projets IA
 Tutoriels Python et R exécutables
 :::
 
-::: {.new-romance-section}
+<!-- New Romance section: Uses both .content-block and .new-romance-section classes
+     - .content-block ensures consistent alignment and height with other cards
+     - .new-romance-section adds special romantic gradient background and decorative heart icon -->
+::: {.content-block .new-romance-section}
 #### 💕 [New Romance](new-romance/index.qmd)
 Exploration créative de l'IA
+:::
+
 :::
 
 :::
