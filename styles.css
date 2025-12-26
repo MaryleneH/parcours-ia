@@ -214,6 +214,10 @@ a:hover::after {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .card::before,
@@ -247,6 +251,18 @@ a:hover::after {
 .content-block > * {
   position: relative;
   z-index: 1;
+}
+
+/* Equal height for grid items on homepage */
+[style*="grid-template-columns: repeat(3, 1fr)"] {
+  align-items: stretch;
+}
+
+[style*="grid-template-columns: repeat(3, 1fr)"] > .card,
+[style*="grid-template-columns: repeat(3, 1fr)"] > .content-block,
+[style*="grid-template-columns: repeat(3, 1fr)"] > .new-romance-section {
+  height: 100%;
+  min-height: 180px;
 }
 
 /* Code blocks - Modern, colorful styling */
@@ -455,12 +471,16 @@ table tbody tr:hover {
 .new-romance-section {
   background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--hermes-beige) 50%, var(--pink-soft) 100%);
   border-radius: 12px;
-  padding: 2rem;
+  padding: 1.75rem;
   margin: 2rem 0;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   animation: float 6s ease-in-out infinite;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 @keyframes float {
