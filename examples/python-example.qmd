@@ -185,8 +185,7 @@ print(f"   - Features : {X_train.shape[1]}")
 # Créer et entraîner le modèle
 logreg = LogisticRegression(
     random_state=42,
-    max_iter=200,
-    multi_class='ovr'
+    max_iter=200
 )
 logreg.fit(X_train_scaled, y_train)
 
