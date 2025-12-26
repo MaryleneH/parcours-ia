@@ -80,3 +80,4 @@ format:
 execute:
   freeze: auto
   cache: true
+  enabled: true
