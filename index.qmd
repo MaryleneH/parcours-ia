@@ -5,8 +5,7 @@ author: "Parcours IA"
 date: last-modified
 format:
   html:
-    toc: true
-    toc-depth: 2
+    toc: false
 ---
 
 ## 🎯 Votre Parcours d'Apprentissage en IA
@@ -15,64 +14,49 @@ Bienvenue sur **Parcours IA**, une plateforme dédiée aux professionnels des do
 
 ### 📚 Nos Parcours d'Apprentissage
 
-Notre contenu est organisé en trois niveaux progressifs pour s'adapter à votre niveau d'expertise :
+::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;"}
 
 ::: {.card}
 #### 🌱 [Niveau Débutant](ia/debutant.qmd)
-Découvrez les fondamentaux de l'IA, le machine learning de base, et les premiers pas avec Python et R.
+Fondamentaux de l'IA et machine learning
 :::
 
 ::: {.card}
 #### 🚀 [Niveau Intermédiaire](ia/intermediaire.qmd)
-Approfondissez vos connaissances avec des algorithmes avancés, le deep learning, et les techniques de data science moderne.
+Algorithmes avancés et deep learning
 :::
 
 ::: {.card}
 #### 💎 [Niveau Expérimenté](ia/experimente.qmd)
-Maîtrisez les architectures complexes, l'IA générative, le MLOps, et les dernières innovations du domaine.
+IA générative, MLOps et innovations
 :::
 
-### 🎓 Sections Spécialisées
+:::
+
+### 🎓 Explorez Nos Ressources
+
+::: {style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;"}
 
 ::: {.content-block}
-#### 📊 [PM/Scrum pour Projets IA](pm-scrum/index.qmd)
-Apprenez à gérer efficacement vos projets d'IA avec les méthodologies agiles :
+#### 📊 [PM/Scrum](pm-scrum/index.qmd)
+Méthodologies agiles pour projets IA
+:::
 
-- **Cadrage** : Définir le périmètre et les objectifs
-- **Gouvernance** : Structurer la prise de décision
-- **Delivery** : Livrer de la valeur en continu
+::: {.content-block}
+#### 💻 [Exemples de Code](examples/python-example.qmd)
+Tutoriels Python et R exécutables
 :::
 
 ::: {.new-romance-section}
 #### 💕 [New Romance](new-romance/index.qmd)
-Une section dédiée à l'exploration créative et innovante de l'IA dans des contextes inattendus.
+Exploration créative de l'IA
 :::
 
-### 💻 Exemples de Code Exécutables
-
-Explorez nos tutoriels pratiques avec du code exécutable :
-
-- [Exemple Python](examples/python-example.qmd) : Analyse de données et machine learning avec Python
-- [Exemple R](examples/r-example.qmd) : Statistiques et visualisations avancées avec R
-
-### 🎯 Pourquoi Parcours IA ?
-
-- **Contenu structuré** : Progression pédagogique claire du débutant à l'expert
-- **Approche pratique** : Exemples de code exécutables en Python et R
-- **Focus professionnel** : Orienté vers les métiers de la data (statistiques, économie)
-- **Méthodologies modernes** : Intégration des pratiques PM/Scrum pour l'IA
-- **Mise à jour continue** : Contenus actualisés avec les dernières innovations
-
-### 🚀 Commencer votre Parcours
-
-1. Consultez la page [À propos](about.qmd) pour en savoir plus sur ce projet
-2. Évaluez votre niveau et choisissez votre parcours dans le [Hub IA](ia/index.qmd)
-3. Explorez les exemples de code pour mettre en pratique
-4. Découvrez les méthodologies de gestion de projet IA
+:::
 
 ---
 
 ::: {.callout-note}
 ## 📢 Note
-Ce site est en évolution constante. N'hésitez pas à contribuer via notre [dépôt GitHub](https://github.com/MaryleneH/parcours-ia) !
+Site en évolution constante. Contribuez via notre [dépôt GitHub](https://github.com/MaryleneH/parcours-ia) !
 :::

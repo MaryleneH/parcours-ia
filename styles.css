@@ -1,54 +1,54 @@
 /*-- scss:defaults --*/
 
-/* Lovable-Inspired Color Scheme - Warm, Modern & Inviting */
+/* Hermès-Inspired Color Scheme - Elegant Gray-Pink Tones */
 :root {
-  /* Primary Colors - Warm pastels with vibrant accents */
-  --pink-primary: #FF6B9D;
-  --pink-light: #FFB5D8;
-  --pink-lighter: #FFF0F6;
-  --pink-soft: #FFE5EF;
-  --pink-dark: #E85D8F;
+  /* Primary Colors - Muted gray-pink palette */
+  --pink-primary: #D4A5A5;
+  --pink-light: #E8C5C5;
+  --pink-lighter: #F5E5E5;
+  --pink-soft: #EDD5D5;
+  --pink-dark: #B88B8B;
   
-  /* Secondary warm tones */
-  --coral: #FF8B7B;
-  --peach: #FFB88C;
-  --lavender: #C5A8FF;
-  --sky-blue: #7EC8E3;
+  /* Gray tones - Sophisticated neutrals */
+  --gray-primary: #8B8B8B;
+  --gray-light: #B8B8B8;
+  --gray-lighter: #E5E5E5;
+  --gray-dark: #5C5C5C;
+  --gray-warm: #F5F5F5;
+  --gray-taupe: #9B8B8B;
   
-  /* Neutral tones - softer and warmer */
-  --gray-primary: #6B7280;
-  --gray-light: #9CA3AF;
-  --gray-lighter: #E5E7EB;
-  --gray-dark: #374151;
-  --gray-warm: #F9FAFB;
+  /* Hermès signature tones */
+  --hermes-beige: #E8DED3;
+  --hermes-taupe: #A89B8F;
+  --hermes-gray: #9B9B9B;
   
-  /* Background colors - warm and inviting */
-  --bg-main: #FFFBF7;
-  --bg-secondary: #FFF5F0;
+  /* Background colors - Soft and elegant */
+  --bg-main: #FAFAFA;
+  --bg-secondary: #F5F5F5;
   --bg-card: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.8);
-  --bg-gradient-start: #FFF0F6;
-  --bg-gradient-end: #FFE5F0;
+  --bg-glass: rgba(255, 255, 255, 0.9);
+  --bg-gradient-start: #F5E5E5;
+  --bg-gradient-end: #E8DED3;
   
   /* Text colors */
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --text-muted: #9CA3AF;
+  --text-primary: #2D2D2D;
+  --text-secondary: #5C5C5C;
+  --text-muted: #8B8B8B;
   
   /* Accent colors */
-  --accent-primary: #FF6B9D;
-  --accent-secondary: #FFB88C;
-  --accent-hover: #E85D8F;
+  --accent-primary: #D4A5A5;
+  --accent-secondary: #A89B8F;
+  --accent-hover: #B88B8B;
   
   /* Border colors */
-  --border-color: #F3E8FF;
-  --border-subtle: #FFF0F6;
+  --border-color: #E5E5E5;
+  --border-subtle: #F0F0F0;
   
-  /* Shadow colors for depth */
-  --shadow-sm: 0 2px 8px rgba(255, 107, 157, 0.08);
-  --shadow-md: 0 4px 16px rgba(255, 107, 157, 0.12);
-  --shadow-lg: 0 8px 32px rgba(255, 107, 157, 0.16);
-  --shadow-xl: 0 12px 48px rgba(255, 107, 157, 0.2);
+  /* Shadow colors for depth - More subtle */
+  --shadow-sm: 0 2px 8px rgba(139, 139, 139, 0.08);
+  --shadow-md: 0 4px 16px rgba(139, 139, 139, 0.12);
+  --shadow-lg: 0 8px 32px rgba(139, 139, 139, 0.15);
+  --shadow-xl: 0 12px 48px rgba(139, 139, 139, 0.18);
 }
 
 /*-- scss:rules --*/
@@ -65,30 +65,30 @@ body {
   transition: background 0.3s ease;
 }
 
-/* Navbar styling - Glassmorphism effect */
+/* Navbar styling - Elegant Hermès-inspired */
 .navbar {
-  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--coral) 100%) !important;
+  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--gray-taupe) 100%) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid rgba(212, 165, 165, 0.3);
+  box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-brand,
 .navbar-nav .nav-link {
   color: white !important;
-  font-weight: 600;
+  font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-nav .nav-link:hover {
   color: white !important;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.15);
 }
 
 /* Dropdown menus - Modern with smooth animations */
@@ -126,23 +126,21 @@ body {
   transform: translateX(4px);
 }
 
-/* Headings - Modern, playful style */
+/* Headings - Elegant, refined style */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.3;
   transition: color 0.3s ease;
 }
 
 h1 {
-  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--coral) 100%);
+  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--gray-taupe) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  border-bottom: 3px solid transparent;
-  border-image: linear-gradient(90deg, var(--pink-primary), var(--coral), var(--lavender));
-  border-image-slice: 1;
+  border-bottom: 2px solid var(--pink-primary);
   padding-bottom: 0.75rem;
   margin-bottom: 2rem;
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -160,12 +158,12 @@ h1 {
 }
 
 h2 {
-  color: var(--pink-primary);
+  color: var(--pink-dark);
   margin-top: 2.5rem;
 }
 
 h3 {
-  color: var(--coral);
+  color: var(--gray-taupe);
 }
 
 h4 {
@@ -201,18 +199,18 @@ a:hover::after {
   width: 100%;
 }
 
-/* Cards and content blocks - Glassmorphism & Neumorphism */
+/* Cards and content blocks - Refined elegance */
 .card,
 .content-block {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 24px;
-  padding: 2rem;
-  margin-bottom: 2rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
   box-shadow: var(--shadow-sm);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -227,15 +225,15 @@ a:hover::after {
   bottom: 0;
   background: linear-gradient(135deg, var(--pink-lighter) 0%, transparent 50%);
   opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
   z-index: 0;
 }
 
 .card:hover,
 .content-block:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
   border-color: var(--pink-light);
 }
 
@@ -285,14 +283,14 @@ pre code {
   padding: 0;
 }
 
-/* Buttons - Playful, modern interactions */
+/* Buttons - Elegant, refined interactions */
 .btn-primary {
-  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--coral) 100%);
+  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--gray-taupe) 100%);
   border: none;
   color: white;
   padding: 0.75rem 1.5rem;
-  border-radius: 16px;
-  font-weight: 600;
+  border-radius: 8px;
+  font-weight: 500;
   box-shadow: var(--shadow-sm);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -307,14 +305,14 @@ pre code {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   transform: translate(-50%, -50%);
   transition: width 0.6s, height 0.6s;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover::before {
@@ -323,7 +321,7 @@ pre code {
 }
 
 .btn-primary:active {
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(-1px) scale(1.01);
 }
 
 /* Table of contents - Modern sidebar */
@@ -397,14 +395,14 @@ table tbody tr:hover {
   transform: scale(1.01);
 }
 
-/* Footer - Modern gradient with glassmorphism */
+/* Footer - Refined gradient with Hermès aesthetic */
 .page-footer {
-  background: linear-gradient(135deg, var(--pink-primary) 0%, var(--coral) 50%, var(--lavender) 100%);
-  backdrop-filter: blur(20px);
+  background: linear-gradient(135deg, var(--gray-taupe) 0%, var(--pink-primary) 50%, var(--hermes-taupe) 100%);
+  backdrop-filter: blur(10px);
   color: white;
   border-top: none;
   padding: 2rem 0;
-  box-shadow: 0 -4px 24px rgba(255, 107, 157, 0.15);
+  box-shadow: 0 -2px 16px rgba(139, 139, 139, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -416,8 +414,8 @@ table tbody tr:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.5;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.3;
 }
 
 .page-footer a {
@@ -428,8 +426,8 @@ table tbody tr:hover {
 }
 
 .page-footer a:hover {
-  transform: translateY(-2px);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* Search - Modern, friendly design */
@@ -452,13 +450,13 @@ table tbody tr:hover {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
-/* New Romance specific styles - Enhanced romantic feel */
+/* New Romance specific styles - Softer romantic feel */
 .new-romance-section {
-  background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--lavender) 50%, var(--pink-soft) 100%);
-  border-radius: 24px;
-  padding: 3rem;
-  margin: 2.5rem 0;
-  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--pink-lighter) 0%, var(--hermes-beige) 50%, var(--pink-soft) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   animation: float 6s ease-in-out infinite;
@@ -469,7 +467,7 @@ table tbody tr:hover {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
 }
 
@@ -480,30 +478,30 @@ table tbody tr:hover {
   right: 2rem;
   width: 4rem;
   height: 4rem;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6B9D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4A5A5'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
   background-size: contain;
-  opacity: 0.2;
+  opacity: 0.15;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.2;
+    opacity: 0.15;
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.3;
+    transform: scale(1.05);
+    opacity: 0.2;
   }
 }
 
 .new-romance-section h1,
 .new-romance-section h2,
 .new-romance-section h3 {
-  color: var(--pink-primary);
+  color: var(--pink-dark);
   font-family: 'Georgia', 'Times New Roman', serif;
   font-style: italic;
-  text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.1);
+  text-shadow: 1px 1px 2px rgba(212, 165, 165, 0.1);
 }
 
 /* Blockquotes - Elegant, modern style */
