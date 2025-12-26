@@ -1,3 +1,5 @@
+/*-- scss:defaults --*/
+
 /* Premium Pink-Gray Color Scheme */
 :root {
   /* Primary Colors - Pink tones */
@@ -30,6 +32,8 @@
   --border-color: #e0e0e0;
   --border-subtle: #f0f0f0;
 }
+
+/*-- scss:rules --*/
 
 /* Body and main elements */
 body {
