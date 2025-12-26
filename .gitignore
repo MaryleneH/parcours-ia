@@ -1,0 +1,75 @@
+# Quarto
+/.quarto/
+/_site/
+/.quarto_cache/
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+temp/
+tmp/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files (if you want to exclude large datasets)
+# *.csv
+# *.parquet
+# *.h5
+# data/
+
+# Model files (if large)
+# *.pkl
+# *.joblib
+# *.h5
+# models/
+
+# Environment variables
+.env
+.env.local

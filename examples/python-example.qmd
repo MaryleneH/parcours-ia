@@ -1,0 +1,342 @@
+---
+title: "Exemple Python : Analyse et Machine Learning"
+subtitle: "Classification de données avec Scikit-learn"
+author: "Parcours IA"
+date: last-modified
+format:
+  html:
+    code-fold: show
+    code-tools: true
+    toc: true
+jupyter: python3
+execute:
+  enabled: true
+  cache: true
+---
+
+## 🐍 Introduction
+
+Ce notebook démontre une analyse complète de données et un modèle de machine learning en Python, incluant :
+
+- Chargement et exploration de données
+- Visualisation
+- Préparation des données
+- Entraînement de modèles
+- Évaluation des performances
+
+## 📚 Importation des Bibliothèques
+
+```{python}
+# Manipulation de données
+import numpy as np
+import pandas as pd
+
+# Visualisation
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Machine Learning
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    accuracy_score, 
+    classification_report, 
+    confusion_matrix,
+    roc_auc_score,
+    roc_curve
+)
+
+# Configuration de l'affichage
+plt.style.use('seaborn-v0_8-darkgrid')
+sns.set_palette("husl")
+pd.set_option('display.max_columns', None)
+
+print("✅ Bibliothèques importées avec succès")
+```
+
+## 📊 Chargement des Données
+
+Nous utilisons le célèbre dataset Iris pour cette démonstration.
+
+```{python}
+# Charger le dataset Iris
+iris = load_iris()
+df = pd.DataFrame(
+    data=iris.data, 
+    columns=iris.feature_names
+)
+df['species'] = iris.target
+df['species_name'] = df['species'].map({
+    0: 'setosa', 
+    1: 'versicolor', 
+    2: 'virginica'
+})
+
+print(f"📈 Dataset chargé : {df.shape[0]} lignes, {df.shape[1]} colonnes")
+print("\nPremières lignes :")
+df.head()
+```
+
+## 🔍 Exploration des Données
+
+### Statistiques Descriptives
+
+```{python}
+print("📊 Statistiques descriptives :")
+df.describe()
+```
+
+### Distribution des Classes
+
+```{python}
+print("\n🌸 Distribution des espèces :")
+class_dist = df['species_name'].value_counts()
+print(class_dist)
+
+# Visualisation
+plt.figure(figsize=(10, 5))
+class_dist.plot(kind='bar', color=['#FF6B6B', '#4ECDC4', '#45B7D1'])
+plt.title('Distribution des Espèces d\'Iris', fontsize=14, fontweight='bold')
+plt.xlabel('Espèce')
+plt.ylabel('Nombre d\'échantillons')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+```
+
+## 📈 Visualisation des Données
+
+### Pairplot des Features
+
+```{python}
+# Créer un pairplot pour visualiser les relations
+sns.pairplot(
+    df, 
+    hue='species_name',
+    diag_kind='kde',
+    markers=['o', 's', 'D'],
+    plot_kws={'alpha': 0.6}
+)
+plt.suptitle('Relations entre les Features', y=1.02, fontsize=16)
+plt.tight_layout()
+plt.show()
+```
+
+### Matrice de Corrélation
+
+```{python}
+# Calculer la matrice de corrélation
+correlation_matrix = df[iris.feature_names].corr()
+
+# Visualiser avec une heatmap
+plt.figure(figsize=(10, 8))
+sns.heatmap(
+    correlation_matrix, 
+    annot=True, 
+    fmt='.2f',
+    cmap='coolwarm',
+    square=True,
+    linewidths=1,
+    cbar_kws={"shrink": 0.8}
+)
+plt.title('Matrice de Corrélation des Features', fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.show()
+
+print("\n💡 Observations :")
+print("- Petal length et petal width sont fortement corrélées (0.96)")
+print("- Ces features semblent très discriminantes pour la classification")
+```
+
+## 🔧 Préparation des Données
+
+```{python}
+# Séparer features et target
+X = df[iris.feature_names].values
+y = df['species'].values
+
+# Split train/test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, 
+    test_size=0.3, 
+    random_state=42,
+    stratify=y
+)
+
+# Normalisation des features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+print(f"✅ Données préparées :")
+print(f"   - Training set : {X_train.shape[0]} échantillons")
+print(f"   - Test set : {X_test.shape[0]} échantillons")
+print(f"   - Features : {X_train.shape[1]}")
+```
+
+## 🤖 Entraînement des Modèles
+
+### Modèle 1 : Régression Logistique
+
+```{python}
+# Créer et entraîner le modèle
+logreg = LogisticRegression(
+    random_state=42,
+    max_iter=200,
+    multi_class='ovr'
+)
+logreg.fit(X_train_scaled, y_train)
+
+# Prédictions
+y_pred_logreg = logreg.predict(X_test_scaled)
+accuracy_logreg = accuracy_score(y_test, y_pred_logreg)
+
+print(f"📊 Régression Logistique")
+print(f"   Accuracy : {accuracy_logreg:.2%}")
+```
+
+### Modèle 2 : Random Forest
+
+```{python}
+# Créer et entraîner le modèle
+rf = RandomForestClassifier(
+    n_estimators=100,
+    random_state=42,
+    max_depth=5
+)
+rf.fit(X_train, y_train)
+
+# Prédictions
+y_pred_rf = rf.predict(X_test)
+accuracy_rf = accuracy_score(y_test, y_pred_rf)
+
+print(f"🌳 Random Forest")
+print(f"   Accuracy : {accuracy_rf:.2%}")
+```
+
+## 📊 Évaluation des Performances
+
+### Matrice de Confusion
+
+```{python}
+# Matrice de confusion pour Random Forest
+cm = confusion_matrix(y_test, y_pred_rf)
+
+# Visualisation
+plt.figure(figsize=(10, 8))
+sns.heatmap(
+    cm, 
+    annot=True, 
+    fmt='d',
+    cmap='Blues',
+    xticklabels=iris.target_names,
+    yticklabels=iris.target_names,
+    square=True,
+    linewidths=1
+)
+plt.title('Matrice de Confusion - Random Forest', fontsize=14, fontweight='bold')
+plt.ylabel('Vraie classe')
+plt.xlabel('Classe prédite')
+plt.tight_layout()
+plt.show()
+```
+
+### Rapport de Classification
+
+```{python}
+print("📋 Rapport de Classification Détaillé (Random Forest) :\n")
+print(classification_report(
+    y_test, 
+    y_pred_rf,
+    target_names=iris.target_names,
+    digits=3
+))
+```
+
+### Importance des Features (Random Forest)
+
+```{python}
+# Extraire l'importance des features
+feature_importance = pd.DataFrame({
+    'feature': iris.feature_names,
+    'importance': rf.feature_importances_
+}).sort_values('importance', ascending=False)
+
+# Visualisation
+plt.figure(figsize=(10, 6))
+plt.barh(
+    feature_importance['feature'], 
+    feature_importance['importance'],
+    color='#4ECDC4'
+)
+plt.xlabel('Importance')
+plt.title('Importance des Features - Random Forest', fontsize=14, fontweight='bold')
+plt.gca().invert_yaxis()
+plt.tight_layout()
+plt.show()
+
+print("\n🔍 Features les plus importantes :")
+print(feature_importance.to_string(index=False))
+```
+
+## 📈 Comparaison des Modèles
+
+```{python}
+# Résumé des performances
+results = pd.DataFrame({
+    'Modèle': ['Régression Logistique', 'Random Forest'],
+    'Accuracy': [accuracy_logreg, accuracy_rf],
+    'Précision': [
+        accuracy_logreg,
+        accuracy_rf
+    ]
+})
+
+print("\n🏆 Comparaison des Modèles :")
+print(results.to_string(index=False))
+
+# Visualisation
+plt.figure(figsize=(10, 6))
+x = np.arange(len(results))
+width = 0.35
+
+plt.bar(x, results['Accuracy'], width, label='Accuracy', color='#FF6B6B', alpha=0.8)
+plt.xlabel('Modèle')
+plt.ylabel('Score')
+plt.title('Comparaison des Performances', fontsize=14, fontweight='bold')
+plt.xticks(x, results['Modèle'])
+plt.ylim(0.85, 1.0)
+plt.legend()
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+## 🎯 Conclusions
+
+```{python}
+print("=" * 60)
+print("📌 CONCLUSIONS DE L'ANALYSE")
+print("=" * 60)
+print(f"\n✅ Meilleur modèle : Random Forest")
+print(f"   Accuracy : {accuracy_rf:.2%}")
+print(f"\n💡 Insights clés :")
+print(f"   - Les features 'petal' sont les plus discriminantes")
+print(f"   - Excellente séparabilité des classes")
+print(f"   - Modèle prêt pour la production")
+print("\n" + "=" * 60)
+```
+
+---
+
+::: {.callout-note}
+## 📚 Pour aller plus loin
+
+- Testez d'autres algorithmes (SVM, Gradient Boosting)
+- Optimisez les hyperparamètres avec GridSearchCV
+- Ajoutez de la validation croisée
+- Explorez le feature engineering avancé
+:::

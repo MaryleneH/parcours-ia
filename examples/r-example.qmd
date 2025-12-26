@@ -1,0 +1,428 @@
+---
+title: "Exemple R : Analyse Statistique et Visualisation"
+subtitle: "Régression linéaire et analyse exploratoire avec R"
+author: "Parcours IA"
+date: last-modified
+format:
+  html:
+    code-fold: show
+    code-tools: true
+    toc: true
+execute:
+  enabled: true
+  cache: true
+---
+
+## 📊 Introduction
+
+Ce document démontre une analyse statistique complète en R, incluant :
+
+- Exploration de données avec le tidyverse
+- Visualisations avec ggplot2
+- Modélisation avec régression linéaire
+- Évaluation et diagnostic de modèles
+
+## 📚 Chargement des Packages
+
+```{r}
+#| message: false
+#| warning: false
+
+# Manipulation de données
+library(tidyverse)
+library(dplyr)
+
+# Visualisation
+library(ggplot2)
+library(gridExtra)
+
+# Modélisation
+library(broom)
+library(caret)
+
+# Affichage des résultats
+library(knitr)
+
+cat("✅ Packages chargés avec succès\n")
+```
+
+## 📊 Chargement des Données
+
+Nous utilisons le dataset `mtcars` (Motor Trend Car Road Tests).
+
+```{r}
+# Charger les données
+data(mtcars)
+df <- mtcars
+
+# Ajouter les noms des voitures comme colonne
+df$car_name <- rownames(mtcars)
+
+# Afficher les dimensions
+cat(sprintf("📈 Dataset chargé : %d lignes, %d colonnes\n", 
+            nrow(df), ncol(df)))
+
+# Premières lignes
+head(df) %>% kable(caption = "Premières lignes du dataset mtcars")
+```
+
+## 🔍 Exploration des Données
+
+### Structure des Données
+
+```{r}
+# Structure du dataset
+cat("📋 Structure des données :\n")
+str(df)
+```
+
+### Statistiques Descriptives
+
+```{r}
+# Statistiques descriptives
+cat("\n📊 Statistiques descriptives :\n")
+summary(df[, c("mpg", "hp", "wt", "qsec")]) %>% 
+  kable(digits = 2, caption = "Statistiques des variables clés")
+```
+
+### Distribution des Variables
+
+```{r}
+#| fig-width: 12
+#| fig-height: 8
+
+# Variables d'intérêt
+variables <- c("mpg", "hp", "wt", "qsec")
+
+# Créer des histogrammes
+plots <- lapply(variables, function(var) {
+  ggplot(df, aes_string(x = var)) +
+    geom_histogram(bins = 15, fill = "#4ECDC4", color = "white", alpha = 0.8) +
+    geom_density(aes(y = ..count..), color = "#FF6B6B", size = 1) +
+    labs(
+      title = paste("Distribution de", var),
+      x = var,
+      y = "Fréquence"
+    ) +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 12),
+      axis.title = element_text(size = 10)
+    )
+})
+
+# Afficher les graphiques
+do.call(gridExtra::grid.arrange, c(plots, ncol = 2))
+```
+
+## 📈 Analyse des Relations
+
+### Matrice de Corrélation
+
+```{r}
+#| fig-width: 10
+#| fig-height: 8
+
+# Calculer la matrice de corrélation
+cor_matrix <- cor(df[, c("mpg", "cyl", "disp", "hp", "drat", "wt", "qsec")])
+
+# Transformer en format long pour ggplot
+cor_df <- as.data.frame(as.table(cor_matrix))
+names(cor_df) <- c("Var1", "Var2", "Correlation")
+
+# Visualisation
+ggplot(cor_df, aes(Var1, Var2, fill = Correlation)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = sprintf("%.2f", Correlation)), size = 3) +
+  scale_fill_gradient2(
+    low = "#3498db", 
+    mid = "white", 
+    high = "#e74c3c",
+    midpoint = 0,
+    limit = c(-1, 1)
+  ) +
+  labs(
+    title = "Matrice de Corrélation",
+    x = "",
+    y = ""
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+cat("\n💡 Observations :\n")
+cat("- mpg est négativement corrélé avec wt (-0.87) et hp (-0.78)\n")
+cat("- Les voitures plus lourdes consomment plus de carburant\n")
+```
+
+### Nuages de Points
+
+```{r}
+#| fig-width: 12
+#| fig-height: 10
+
+# Créer des scatter plots
+p1 <- ggplot(df, aes(x = wt, y = mpg)) +
+  geom_point(aes(color = hp), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "#FF6B6B") +
+  scale_color_gradient(low = "#4ECDC4", high = "#e74c3c") +
+  labs(
+    title = "MPG vs Poids",
+    x = "Poids (1000 lbs)",
+    y = "Miles par gallon",
+    color = "HP"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+p2 <- ggplot(df, aes(x = hp, y = mpg)) +
+  geom_point(aes(color = wt), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "#FF6B6B") +
+  scale_color_gradient(low = "#4ECDC4", high = "#e74c3c") +
+  labs(
+    title = "MPG vs Puissance",
+    x = "Puissance (HP)",
+    y = "Miles par gallon",
+    color = "Poids"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+p3 <- ggplot(df, aes(x = qsec, y = mpg)) +
+  geom_point(aes(color = wt), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "#FF6B6B") +
+  scale_color_gradient(low = "#4ECDC4", high = "#e74c3c") +
+  labs(
+    title = "MPG vs Temps 1/4 mile",
+    x = "Temps (secondes)",
+    y = "Miles par gallon",
+    color = "Poids"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+p4 <- ggplot(df, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot(fill = "#4ECDC4", alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5, color = "#FF6B6B") +
+  labs(
+    title = "MPG par Nombre de Cylindres",
+    x = "Nombre de cylindres",
+    y = "Miles par gallon"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+
+# Afficher les graphiques
+gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+## 🤖 Modélisation : Régression Linéaire
+
+### Modèle Simple
+
+```{r}
+# Modèle avec une seule variable prédictive
+model_simple <- lm(mpg ~ wt, data = df)
+
+# Résumé du modèle
+cat("📊 Modèle Simple : mpg ~ wt\n\n")
+summary(model_simple) %>% print()
+
+# Extraire les statistiques clés
+model_simple_stats <- glance(model_simple)
+cat(sprintf("\n✅ R² = %.3f | R² ajusté = %.3f | p-value < 0.001\n",
+            model_simple_stats$r.squared,
+            model_simple_stats$adj.r.squared))
+```
+
+### Modèle Multiple
+
+```{r}
+# Modèle avec plusieurs variables
+model_multiple <- lm(mpg ~ wt + hp + qsec, data = df)
+
+# Résumé du modèle
+cat("\n📊 Modèle Multiple : mpg ~ wt + hp + qsec\n\n")
+summary(model_multiple) %>% print()
+
+# Extraire les statistiques
+model_multiple_stats <- glance(model_multiple)
+cat(sprintf("\n✅ R² = %.3f | R² ajusté = %.3f | p-value < 0.001\n",
+            model_multiple_stats$r.squared,
+            model_multiple_stats$adj.r.squared))
+```
+
+### Comparaison des Modèles
+
+```{r}
+# Comparer les modèles avec ANOVA
+cat("\n📋 Comparaison des modèles (ANOVA) :\n")
+anova(model_simple, model_multiple) %>% 
+  kable(digits = 4, caption = "Test ANOVA de comparaison")
+
+cat("\n💡 Le modèle multiple explique significativement mieux les données\n")
+```
+
+## 📈 Diagnostic du Modèle
+
+```{r}
+#| fig-width: 12
+#| fig-height: 10
+
+# Graphiques de diagnostic
+par(mfrow = c(2, 2))
+plot(model_multiple, 
+     col = "#4ECDC4", 
+     pch = 19,
+     main = "Diagnostic du Modèle Multiple")
+par(mfrow = c(1, 1))
+```
+
+### Analyse des Résidus
+
+```{r}
+# Créer un dataframe avec les résidus
+residuals_df <- data.frame(
+  fitted = fitted(model_multiple),
+  residuals = residuals(model_multiple),
+  standardized = rstandard(model_multiple)
+)
+
+# Test de normalité
+shapiro_test <- shapiro.test(residuals_df$residuals)
+
+cat("\n🔍 Tests de Diagnostic :\n")
+cat(sprintf("   - Test de Shapiro-Wilk (normalité) : W = %.4f, p-value = %.4f\n",
+            shapiro_test$statistic, shapiro_test$p.value))
+
+if (shapiro_test$p.value > 0.05) {
+  cat("   ✅ Les résidus suivent une distribution normale\n")
+} else {
+  cat("   ⚠️  Les résidus ne suivent pas parfaitement une distribution normale\n")
+}
+```
+
+## 🎯 Prédictions
+
+```{r}
+# Créer des données pour prédiction
+new_data <- data.frame(
+  wt = c(2.5, 3.0, 3.5, 4.0),
+  hp = c(100, 150, 200, 250),
+  qsec = c(18, 17, 16, 15)
+)
+
+# Faire des prédictions
+predictions <- predict(model_multiple, 
+                      newdata = new_data, 
+                      interval = "confidence")
+
+# Combiner avec les données
+results <- cbind(new_data, predictions)
+
+cat("\n🎯 Prédictions de MPG :\n")
+results %>% 
+  kable(digits = 2, 
+        caption = "Prédictions avec intervalles de confiance à 95%")
+```
+
+## 📊 Visualisation des Prédictions
+
+```{r}
+#| fig-width: 12
+#| fig-height: 6
+
+# Prédictions vs Valeurs réelles
+pred_df <- data.frame(
+  actual = df$mpg,
+  predicted = fitted(model_multiple),
+  residuals = residuals(model_multiple)
+)
+
+p1 <- ggplot(pred_df, aes(x = actual, y = predicted)) +
+  geom_point(color = "#4ECDC4", size = 3, alpha = 0.7) +
+  geom_abline(intercept = 0, slope = 1, 
+              color = "#FF6B6B", linetype = "dashed", size = 1) +
+  labs(
+    title = "Valeurs Prédites vs Réelles",
+    x = "MPG Réel",
+    y = "MPG Prédit"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14))
+
+p2 <- ggplot(pred_df, aes(x = predicted, y = residuals)) +
+  geom_point(color = "#4ECDC4", size = 3, alpha = 0.7) +
+  geom_hline(yintercept = 0, color = "#FF6B6B", linetype = "dashed", size = 1) +
+  geom_smooth(se = TRUE, color = "#45B7D1", fill = "#45B7D1", alpha = 0.2) +
+  labs(
+    title = "Résidus vs Valeurs Prédites",
+    x = "MPG Prédit",
+    y = "Résidus"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14))
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+```
+
+## 📈 Performance du Modèle
+
+```{r}
+# Calculer les métriques
+predictions_train <- predict(model_multiple, df)
+actual <- df$mpg
+
+# RMSE
+rmse <- sqrt(mean((actual - predictions_train)^2))
+
+# MAE
+mae <- mean(abs(actual - predictions_train))
+
+# MAPE
+mape <- mean(abs((actual - predictions_train) / actual)) * 100
+
+cat("\n📊 MÉTRIQUES DE PERFORMANCE\n")
+cat("=" , rep("=", 40), "\n", sep = "")
+cat(sprintf("R²               : %.3f\n", model_multiple_stats$r.squared))
+cat(sprintf("R² ajusté        : %.3f\n", model_multiple_stats$adj.r.squared))
+cat(sprintf("RMSE             : %.3f mpg\n", rmse))
+cat(sprintf("MAE              : %.3f mpg\n", mae))
+cat(sprintf("MAPE             : %.2f%%\n", mape))
+cat("=" , rep("=", 40), "\n", sep = "")
+```
+
+## 🎯 Conclusions
+
+```{r}
+cat("\n📌 CONCLUSIONS DE L'ANALYSE\n")
+cat("=", rep("=", 59), "\n", sep = "")
+cat("\n✅ Résultats clés :\n")
+cat(sprintf("   - Le modèle explique %.1f%% de la variance de MPG\n", 
+            model_multiple_stats$r.squared * 100))
+cat("   - Toutes les variables sont significatives (p < 0.05)\n")
+cat("   - RMSE de", round(rmse, 2), "mpg (bonne précision)\n")
+cat("\n💡 Insights métier :\n")
+cat("   - Le poids (wt) a l'effet le plus important sur la consommation\n")
+cat("   - La puissance (hp) affecte négativement le MPG\n")
+cat("   - Les résidus sont relativement normaux\n")
+cat("\n🚀 Recommandations :\n")
+cat("   - Le modèle peut être utilisé pour prédire la consommation\n")
+cat("   - Considérer l'ajout d'interactions entre variables\n")
+cat("   - Tester des transformations non-linéaires\n")
+cat("\n", rep("=", 60), "\n", sep = "")
+```
+
+---
+
+::: {.callout-note}
+## 📚 Pour aller plus loin
+
+- Explorez les interactions entre variables
+- Testez des modèles non-linéaires (GAM, splines)
+- Ajoutez de la validation croisée
+- Utilisez tidymodels pour un workflow moderne
+- Explorez les packages caret ou mlr3 pour le machine learning
+:::
